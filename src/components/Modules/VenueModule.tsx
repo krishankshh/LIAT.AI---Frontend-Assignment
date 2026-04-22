@@ -180,6 +180,43 @@ const VenueModule: React.FC = () => {
         </div>
       </section>
 
+      {/* Supplementary Venues */}
+      <section className="module-content">
+        <motion.h2 className="module-section-title" {...fadeUp}>Supplementary <span style={{ color: '#fdd500' }}>Spaces</span></motion.h2>
+        <div className="module-grid">
+          <motion.div className="module-card" {...fadeUp}>
+            <div className="module-card-title" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>The Executive Center</div>
+            <div className="module-card-text">
+              15,000 sq ft of flexible meeting space. 4 dedicated boardrooms, 2 large breakout rooms, and a central gallery. Full business center support and premium catering.
+            </div>
+            <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Capacity: 500</span>
+              <span>Level: 4 East</span>
+            </div>
+          </motion.div>
+          <motion.div className="module-card" {...fadeUp}>
+            <div className="module-card-title" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Parkview Meeting & Event Center</div>
+            <div className="module-card-text">
+              Overlooking Nickelodeon Universe, this 4,000 sq ft space is ideal for corporate mixers, private dinners, and medium-scale presentations.
+            </div>
+            <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Capacity: 250</span>
+              <span>Level: 4 South</span>
+            </div>
+          </motion.div>
+          <motion.div className="module-card" {...fadeUp}>
+            <div className="module-card-title" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>The Huntington Bank Rotunda</div>
+            <div className="module-card-text">
+              Our flagship 5,000-capacity amphitheater. Ideal for mass-audience presentations, award ceremonies, and high-production launches.
+            </div>
+            <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Capacity: 5,000</span>
+              <span>Level: 1 East</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <div className="module-cta">
         <motion.h2 className="module-cta-title" {...fadeUp}>Book The <span style={{ color: '#fdd500' }}>Rotunda.</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>From concerts to corporate keynotes, bring your event to the stage that 40 million people walk past every year.</motion.p>

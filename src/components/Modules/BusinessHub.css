@@ -245,6 +245,34 @@
   100% { left: 200%; }
 }
 
+.vault-request-btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.vault-request-btn:hover {
+  background: rgba(253, 213, 0, 0.1);
+  color: #fdd500;
+  border-color: rgba(253, 213, 0, 0.3);
+}
+
+.resource-vault-card.active .vault-card-title {
+  color: white;
+}
+
+.resource-vault-card.active .vault-card-desc {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hub-opportunities-grid {

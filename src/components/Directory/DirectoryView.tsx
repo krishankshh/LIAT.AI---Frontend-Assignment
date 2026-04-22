@@ -102,6 +102,13 @@ const DirectoryView: React.FC = () => {
                 {cat}
               </button>
             ))}
+            <button
+              className={`filter-pill leasing-pill ${activeCategory === 'Leasing' ? 'active-leasing' : ''}`}
+              onClick={() => setActiveCategory('Leasing')}
+              style={{ border: '1px solid rgba(253, 213, 0, 0.4)' }}
+            >
+              Leasing Opportunities
+            </button>
           </div>
         </div>
       </div>
@@ -127,6 +134,33 @@ const DirectoryView: React.FC = () => {
               <rect x="70" y="140" width="70" height="220" fill="rgba(255,255,255,0.02)" rx="5" />
               <rect x="660" y="140" width="70" height="220" fill="rgba(255,255,255,0.02)" rx="5" />
 
+              {/* The Rotunda (East Atrium) */}
+              <motion.g
+                onMouseEnter={() => setHoveredStore('rotunda')}
+                onMouseLeave={() => setHoveredStore(null)}
+                style={{ cursor: 'pointer' }}
+              >
+                <path 
+                  d="M600,180 Q640,180 640,250 Q640,320 600,320" 
+                  fill="rgba(253, 213, 0, 0.05)" 
+                  stroke="#fdd500" 
+                  strokeWidth="1" 
+                  strokeDasharray="4 2"
+                />
+                <text x="615" y="255" textAnchor="middle" fill="#fdd500" fontSize="7" fontWeight="800" transform="rotate(90, 615, 255)">ROTUNDA</text>
+              </motion.g>
+
+              {/* The Executive Center (Level 4 - Proxy on Level 1/2/3) */}
+              <motion.rect 
+                x="300" y="20" width="200" height="20" rx="4"
+                fill="rgba(255,255,255,0.03)"
+                stroke="rgba(255,255,255,0.1)"
+                onMouseEnter={() => setHoveredStore('exec-center')}
+                onMouseLeave={() => setHoveredStore(null)}
+                style={{ cursor: 'pointer' }}
+              />
+              <text x="400" y="33" textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="6" fontWeight="700">THE EXECUTIVE CENTER (LVL 4)</text>
+
               {/* Nickelodeon Universe (Center Atrium) */}
               <motion.rect 
                 x="250" y="170" width="300" height="160" rx="20" 
@@ -138,6 +172,15 @@ const DirectoryView: React.FC = () => {
                 style={{ cursor: 'pointer', transition: '0.3s' }}
               />
               <text x="400" y="255" textAnchor="middle" fill="rgba(253, 213, 0, 0.4)" fontSize="10" fontWeight="900" letterSpacing="0.3em" style={{ pointerEvents: 'none' }}>NICKELODEON UNIVERSE</text>
+
+              {/* Available Units (Leasing Mode) */}
+              {activeCategory === 'Leasing' && (
+                <g>
+                  <rect x="230" y="80" width="20" height="30" fill="#fdd500" opacity="0.6" stroke="#fff" strokeWidth="1" />
+                  <rect x="560" y="390" width="30" height="30" fill="#fdd500" opacity="0.6" stroke="#fff" strokeWidth="1" />
+                  <rect x="670" y="340" width="20" height="40" fill="#fdd500" opacity="0.6" stroke="#fff" strokeWidth="1" />
+                </g>
+              )}
 
               {/* Render Store Blocks Instead of Points */}
               {filteredStores.map((store: Store) => {

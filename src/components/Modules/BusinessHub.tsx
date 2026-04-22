@@ -168,10 +168,46 @@ const BusinessHub: React.FC = () => {
         </div>
       </section>
 
-      {/* Resource Vault — Expandability Signal */}
+      {/* Resource Vault — Active Expansion */}
       <section className="module-content">
         <motion.h2 className="module-section-title" {...fadeUp}>Resource <span style={{ color: '#fdd500' }}>Vault</span></motion.h2>
         <div className="resource-vault-grid">
+          {/* Active Download Card */}
+          <motion.div
+            className="resource-vault-card active"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{ border: '1px solid rgba(253, 213, 0, 0.3)', background: 'rgba(253, 213, 0, 0.02)' }}
+          >
+            <div className="vault-card-icon" style={{ color: '#fdd500' }}><FileText size={24} /></div>
+            <h3 className="vault-card-title">2026 Media Kit</h3>
+            <p className="vault-card-desc">Complete audience demographics, signage specs, and partnership tiers in a single PDF guide.</p>
+            <button 
+              onClick={() => {
+                const btn = document.activeElement as HTMLButtonElement;
+                if(btn) btn.innerText = "Check your email!";
+                setTimeout(() => { if(btn) btn.innerText = "Download Media Kit"; }, 3000);
+              }}
+              className="vault-action-btn"
+              style={{
+                marginTop: '1.5rem',
+                padding: '0.6rem 1.2rem',
+                borderRadius: '0.5rem',
+                background: '#fdd500',
+                color: 'black',
+                border: 'none',
+                fontWeight: '700',
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                width: '100%'
+              }}
+            >
+              Download Media Kit
+            </button>
+          </motion.div>
+
           {resourceVault.map((res, i) => (
             <motion.div
               key={res.title}
@@ -179,15 +215,16 @@ const BusinessHub: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: (i + 1) * 0.1 }}
             >
               <div className="vault-card-lock">
                 <Lock size={12} />
-                <span>Coming Soon</span>
+                <span>Restricted</span>
               </div>
               <div className="vault-card-icon">{res.icon}</div>
               <h3 className="vault-card-title">{res.title}</h3>
               <p className="vault-card-desc">{res.description}</p>
+              <button onClick={() => navigate('/inquiry?type=other')} className="vault-request-btn">Request Access</button>
               <div className="vault-shimmer" />
             </motion.div>
           ))}

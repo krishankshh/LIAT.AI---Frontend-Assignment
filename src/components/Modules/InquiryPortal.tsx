@@ -78,7 +78,12 @@ const InquiryPortal: React.FC = () => {
   return (
     <div className="inquiry-portal">
       {/* Hero */}
-      <motion.div className="inquiry-hero" {...fadeUp}>
+      <motion.div 
+        className="inquiry-hero" 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         <span className="inquiry-eyebrow">Partner Inquiry</span>
         <h1 className="inquiry-title">
           Let's <span style={{ color: '#fdd500' }}>Talk.</span>
