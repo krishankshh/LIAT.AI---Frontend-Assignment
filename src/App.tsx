@@ -12,6 +12,7 @@ import SponsorshipModule from './components/Modules/SponsorshipModule';
 import LeasingModule from './components/Modules/LeasingModule';
 import VenueModule from './components/Modules/VenueModule';
 import BusinessHub from './components/Modules/BusinessHub';
+import InquiryPortal from './components/Modules/InquiryPortal';
 import DirectoryView from './components/Directory/DirectoryView';
 import ScrollToTop from './components/Layout/ScrollToTop';
 
@@ -30,6 +31,7 @@ import ScrollToTop from './components/Layout/ScrollToTop';
  *   /attractions            — Attractions module
  *   /events                 — Events & platform module
  *   /directory              — Interactive directory + SVG map
+ *   /inquiry                — Partner inquiry form + map
  * 
  *   BUSINESS PORTAL (sidebar: Business mode)
  *   /business               — Business hub dashboard
@@ -37,6 +39,7 @@ import ScrollToTop from './components/Layout/ScrollToTop';
  *   /business/venue         — The Rotunda venue spotlight
  *   /business/events        — Events hosting & booking
  *   /business/leasing       — Leasing paths & contact
+ *   /business/inquiry       — Partner inquiry form + map
  */
 export default function App() {
   return (
@@ -57,6 +60,7 @@ export default function App() {
             <Route path="/attractions" element={<AttractionsModule />} />
             <Route path="/events" element={<EventsModule />} />
             <Route path="/directory" element={<DirectoryView />} />
+            <Route path="/inquiry" element={<InquiryPortal />} />
 
             {/* Business Portal */}
             <Route path="/business" element={<BusinessHub />} />
@@ -64,6 +68,7 @@ export default function App() {
             <Route path="/business/venue" element={<VenueModule />} />
             <Route path="/business/events" element={<EventsModule />} />
             <Route path="/business/leasing" element={<LeasingModule />} />
+            <Route path="/business/inquiry" element={<InquiryPortal />} />
           </Route>
         </Routes>
       </div>

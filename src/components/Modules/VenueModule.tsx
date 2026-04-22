@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Music, Presentation, Sparkles, ShoppingBag, ChevronDown, ChevronUp, Monitor, Speaker, Lightbulb, Truck } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -11,6 +12,7 @@ const fadeUp = {
 };
 
 const VenueModule: React.FC = () => {
+  const navigate = useNavigate();
   const [expandedSpec, setExpandedSpec] = useState<string | null>(null);
 
   const stats = [
@@ -181,7 +183,7 @@ const VenueModule: React.FC = () => {
       <div className="module-cta">
         <motion.h2 className="module-cta-title" {...fadeUp}>Book The <span style={{ color: '#fdd500' }}>Rotunda.</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>From concerts to corporate keynotes, bring your event to the stage that 40 million people walk past every year.</motion.p>
-        <motion.a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn" {...fadeUp}>Inquire About Booking</motion.a>
+        <motion.button onClick={() => navigate('/inquiry?type=venue')} className="module-cta-btn" {...fadeUp}>Inquire About Booking</motion.button>
       </div>
     </div>
   );

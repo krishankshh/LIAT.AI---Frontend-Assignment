@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Building2, Store, Zap, TrendingUp, Mail, ChevronDown, ChevronUp, Users, MapPin } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -11,6 +12,7 @@ const fadeUp = {
 };
 
 const LeasingModule: React.FC = () => {
+  const navigate = useNavigate();
   const [expandedPath, setExpandedPath] = useState<string | null>(null);
 
   const stats = [
@@ -192,9 +194,9 @@ const LeasingModule: React.FC = () => {
                         ))}
                       </ul>
                     </div>
-                    <a href="mailto:lease.inquiry@moa.net" className="path-cta-btn">
+                    <button onClick={() => navigate(`/inquiry?type=leasing-${p.id === 'fnb' ? 'fnb' : p.id}`)} className="path-cta-btn">
                       <Mail size={14} /> Inquire About {p.title} Space
-                    </a>
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -234,12 +236,12 @@ const LeasingModule: React.FC = () => {
         <motion.h2 className="module-cta-title" {...fadeUp}>Let's <span style={{ color: '#fdd500' }}>Talk.</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>Connect with our leasing team to explore available spaces and custom solutions for your brand.</motion.p>
         <motion.div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }} {...fadeUp}>
-          <a href="mailto:lease.inquiry@moa.net" className="module-cta-btn">
+          <button onClick={() => navigate('/inquiry?type=leasing-inline')} className="module-cta-btn">
             <Mail size={16} /> Leasing Inquiry
-          </a>
-          <a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn" style={{ backgroundColor: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
+          </button>
+          <button onClick={() => navigate('/inquiry?type=sponsorship')} className="module-cta-btn" style={{ backgroundColor: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
             Sponsorship & Alliances
-          </a>
+          </button>
         </motion.div>
       </div>
     </div>

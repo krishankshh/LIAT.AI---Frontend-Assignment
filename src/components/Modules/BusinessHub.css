@@ -92,6 +92,160 @@
   gap: 0.75rem;
 }
 
+/* ================================================
+   DECK OVERVIEW — Non-Linear Navigation Grid
+   ================================================ */
+
+.deck-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.deck-overview-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.deck-overview-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(253, 213, 0, 0.2);
+  transform: translateX(4px);
+}
+
+.deck-card-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  background: rgba(253, 213, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fdd500;
+}
+
+.deck-card-name {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+}
+
+.deck-card-desc {
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 0.15rem;
+}
+
+.deck-card-arrow {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.deck-overview-card:hover .deck-card-arrow {
+  color: #fdd500;
+  transform: translateX(4px);
+}
+
+/* ================================================
+   RESOURCE VAULT — Coming Soon Placeholders
+   ================================================ */
+
+.resource-vault-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.resource-vault-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.25rem;
+  padding: 2.5rem 2rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.vault-card-lock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.55rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(253, 213, 0, 0.6);
+  background: rgba(253, 213, 0, 0.06);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  font-family: sans-serif;
+}
+
+.vault-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.15);
+  margin: 0 auto 1.25rem;
+}
+
+.vault-card-title {
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.75rem;
+}
+
+.vault-card-desc {
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1.7;
+}
+
+/* Shimmer animation */
+.vault-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(253, 213, 0, 0.02) 40%,
+    rgba(253, 213, 0, 0.04) 50%,
+    rgba(253, 213, 0, 0.02) 60%,
+    transparent 100%
+  );
+  animation: shimmer 4s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .hub-opportunities-grid {
     grid-template-columns: 1fr;
@@ -99,5 +253,13 @@
 
   .hub-opportunity-card {
     padding: 1.75rem;
+  }
+
+  .resource-vault-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deck-overview-grid {
+    grid-template-columns: 1fr;
   }
 }

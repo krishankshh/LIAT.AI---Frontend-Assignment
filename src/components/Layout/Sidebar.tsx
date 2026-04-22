@@ -138,9 +138,12 @@ const Sidebar: React.FC = () => {
                 {isBusinessMode ? 'Mall Experience' : 'Business Opportunities'}
               </button>
 
-              <a href="mailto:lease.inquiry@moa.net" className="quick-action-btn">
+              <button
+                className="quick-action-btn"
+                onClick={() => navigate(isBusinessMode ? '/business/inquiry' : '/inquiry')}
+              >
                 {isBusinessMode ? 'Contact Partnerships' : 'Request a Tour'}
-              </a>
+              </button>
             </div>
           </motion.aside>
         )}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Mic2, PartyPopper, Users, TrendingUp, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Calendar, Mic2, PartyPopper, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import './ModuleSlide.css';
 
 const fadeUp = {
@@ -11,6 +12,7 @@ const fadeUp = {
 };
 
 const EventsModule: React.FC = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const stats = [
@@ -191,12 +193,12 @@ const EventsModule: React.FC = () => {
         <motion.h2 className="module-cta-title" {...fadeUp}>Book Your <span style={{ color: '#fdd500' }}>Event.</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>From intimate gatherings to arena-scale productions, make it happen at the nation's most-visited destination.</motion.p>
         <motion.div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }} {...fadeUp}>
-          <a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn">
-            <Mail size={16} /> Inquire About Events
-          </a>
-          <a href="/venue" className="module-cta-btn" style={{ backgroundColor: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
+          <button onClick={() => navigate('/inquiry?type=events')} className="module-cta-btn">
+            Inquire About Events
+          </button>
+          <button onClick={() => navigate('/business/venue')} className="module-cta-btn" style={{ backgroundColor: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
             Explore The Rotunda →
-          </a>
+          </button>
         </motion.div>
       </div>
     </div>

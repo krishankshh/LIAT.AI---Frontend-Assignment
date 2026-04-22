@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Megaphone, Building2, Mic, TrendingUp, ArrowRight } from 'lucide-react';
+import {
+  Megaphone, Building2, Mic, TrendingUp, ArrowRight,
+  ShoppingBag, Star, Utensils, Ticket, Calendar, Map,
+  Lock, Globe, FileText, Code
+} from 'lucide-react';
 import './ModuleSlide.css';
 import './BusinessHub.css';
 
@@ -53,6 +57,36 @@ const BusinessHub: React.FC = () => {
     },
   ];
 
+  /* Deck Overview — all modules from both portals */
+  const deckModules = [
+    { name: 'Property Overview', desc: 'Scale, location, and visitor demographics', path: '/overview', icon: <Globe size={18} /> },
+    { name: 'Retail', desc: 'The retail environment and key tenants', path: '/retail', icon: <ShoppingBag size={18} /> },
+    { name: 'Luxury', desc: 'Premium positioning and brand elevation', path: '/luxury', icon: <Star size={18} /> },
+    { name: 'Dining & Lifestyle', desc: 'F&B as a destination draw', path: '/dining', icon: <Utensils size={18} /> },
+    { name: 'Attractions', desc: 'Entertainment and experiences', path: '/attractions', icon: <Ticket size={18} /> },
+    { name: 'Events', desc: 'Hosting, production, and booking', path: '/business/events', icon: <Calendar size={18} /> },
+    { name: 'Sponsorship', desc: 'Tiers, audience data, and activations', path: '/business/sponsorship', icon: <Megaphone size={18} /> },
+    { name: 'Directory + Map', desc: 'Interactive SVG floor plan', path: '/directory', icon: <Map size={18} /> },
+  ];
+
+  const resourceVault = [
+    {
+      icon: <Globe size={24} />,
+      title: '3D Virtual Tour',
+      description: 'Explore every corner of the property in immersive 3D — from anchor wings to the Rotunda stage.',
+    },
+    {
+      icon: <FileText size={24} />,
+      title: 'Tenant Design Guidelines',
+      description: 'Brand standards, signage specifications, and build-out templates for new and existing tenants.',
+    },
+    {
+      icon: <Code size={24} />,
+      title: 'Activation API',
+      description: 'Integrate your digital campaigns with MOA\'s signage network, social channels, and event calendar.',
+    },
+  ];
+
   return (
     <div className="module-slide">
       <div className="module-hero">
@@ -74,6 +108,7 @@ const BusinessHub: React.FC = () => {
         ))}
       </div>
 
+      {/* Opportunity Cards */}
       <section className="module-content">
         <motion.h2 className="module-section-title" {...fadeUp}>Explore <span style={{ color: '#fdd500' }}>Opportunities</span></motion.h2>
         <div className="hub-opportunities-grid">
@@ -103,10 +138,66 @@ const BusinessHub: React.FC = () => {
         </div>
       </section>
 
+      {/* Deck Overview — Non-Linear Navigation */}
+      <section className="module-content">
+        <motion.h2 className="module-section-title" {...fadeUp}>Deck <span style={{ color: '#fdd500' }}>Overview</span></motion.h2>
+        <motion.p {...fadeUp} style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'sans-serif', fontSize: '0.9rem', marginBottom: '2rem', marginTop: '-1.5rem' }}>
+          Jump directly to any section of the sales deck.
+        </motion.p>
+        <div className="deck-overview-grid">
+          {deckModules.map((mod, i) => (
+            <motion.div
+              key={mod.name}
+              className="deck-overview-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              onClick={() => navigate(mod.path)}
+              role="button"
+              tabIndex={0}
+            >
+              <div className="deck-card-icon">{mod.icon}</div>
+              <div>
+                <div className="deck-card-name">{mod.name}</div>
+                <div className="deck-card-desc">{mod.desc}</div>
+              </div>
+              <ArrowRight size={14} className="deck-card-arrow" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Resource Vault — Expandability Signal */}
+      <section className="module-content">
+        <motion.h2 className="module-section-title" {...fadeUp}>Resource <span style={{ color: '#fdd500' }}>Vault</span></motion.h2>
+        <div className="resource-vault-grid">
+          {resourceVault.map((res, i) => (
+            <motion.div
+              key={res.title}
+              className="resource-vault-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <div className="vault-card-lock">
+                <Lock size={12} />
+                <span>Coming Soon</span>
+              </div>
+              <div className="vault-card-icon">{res.icon}</div>
+              <h3 className="vault-card-title">{res.title}</h3>
+              <p className="vault-card-desc">{res.description}</p>
+              <div className="vault-shimmer" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <div className="module-cta">
         <motion.h2 className="module-cta-title" {...fadeUp}>Ready to <span style={{ color: '#fdd500' }}>Start?</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>Connect with our partnerships team to explore how Mall of America can amplify your brand.</motion.p>
-        <motion.a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn" {...fadeUp}>Contact Partnerships Team</motion.a>
+        <motion.button onClick={() => navigate('/inquiry?type=other')} className="module-cta-btn" {...fadeUp}>Contact Partnerships Team</motion.button>
       </div>
     </div>
   );
