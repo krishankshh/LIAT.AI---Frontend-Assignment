@@ -11,6 +11,7 @@ import './Sidebar.css';
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+  const [zoomState, setZoomState] = useState<{ active: boolean; color: string } | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -41,16 +42,55 @@ const Sidebar: React.FC = () => {
     { name: 'Hub', path: '/business', icon: <LayoutDashboard size={18} /> },
     { name: 'Sponsorship', path: '/business/sponsorship', icon: <Megaphone size={18} /> },
     { name: 'The Rotunda', path: '/business/venue', icon: <Mic size={18} /> },
-    { name: 'Events Platform', path: '/business/events', icon: <Calendar size={18} /> },
+    { name: 'Events', path: '/business/events', icon: <Calendar size={18} /> },
     { name: 'Leasing Paths', path: '/business/leasing', icon: <Building2 size={18} /> },
+    { name: 'Directory + Map', path: '/directory', icon: <Map size={18} /> },
   ];
 
   const navItems = isBusinessMode ? businessNavItems : mallNavItems;
+
+  const handleModeSwitch = () => {
+    // Trigger cinematic zoom transition
+    setZoomState({ 
+      active: true, 
+      color: isBusinessMode ? 'white' : '#fdd500' // Target mode's primary color
+    });
+
+    setTimeout(() => {
+      navigate(isBusinessMode ? '/overview' : '/business');
+      // Reset zoom after transition
+      setTimeout(() => setZoomState(null), 500);
+    }, 1000);
+  };
 
   const showSidebar = isDesktop || isOpen;
 
   return (
     <>
+      {/* Cinematic Zoom Overlay */}
+      <AnimatePresence>
+        {zoomState?.active && (
+          <motion.div 
+            className="sidebar-zoom-overlay"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 100, opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
+            style={{ 
+              backgroundColor: zoomState.color,
+              position: 'fixed',
+              left: isDesktop ? '140px' : '50%', // Originates from sidebar area
+              bottom: '120px',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              zIndex: 9999,
+              pointerEvents: 'none'
+            }}
+          />
+        )}
+      </AnimatePresence>
+
       {!isDesktop && (
         <button className="sidebar-toggle" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -70,7 +110,6 @@ const Sidebar: React.FC = () => {
               <img src="/moa_logo.png" alt="Mall of America" className="brand-logo-img" />
             </div>
 
-            {/* Mode indicator */}
             <div className={`sidebar-mode-badge ${isBusinessMode ? 'business' : 'mall'}`}>
               {isBusinessMode ? 'Business Portal' : 'Mall Experience'}
             </div>
@@ -90,19 +129,15 @@ const Sidebar: React.FC = () => {
             </nav>
 
             <div className="sidebar-footer">
-              {/* Mode switcher */}
               <button
                 className="mode-switch-btn"
-                onClick={() => navigate(isBusinessMode ? '/overview' : '/business')}
+                onClick={handleModeSwitch}
+                disabled={zoomState?.active}
               >
                 <ArrowLeftRight size={14} />
                 {isBusinessMode ? 'Mall Experience' : 'Business Opportunities'}
               </button>
 
-              <div className="contact-status">
-                <div className="status-dot" />
-                Live Support Online
-              </div>
               <a href="mailto:lease.inquiry@moa.net" className="quick-action-btn">
                 {isBusinessMode ? 'Contact Partnerships' : 'Request a Tour'}
               </a>

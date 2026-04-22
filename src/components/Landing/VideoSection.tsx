@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './VideoSection.css';
 
 const VideoSection: React.FC = () => {
   const navigate = useNavigate();
-  const [isZooming, setIsZooming] = useState(false);
+  const [zoomTarget, setZoomTarget] = useState<'mall' | 'business' | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -16,15 +17,18 @@ const VideoSection: React.FC = () => {
   const videoY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
-  const handleEnter = () => {
-    setIsZooming(true);
+  const handleMallEnter = () => {
+    setZoomTarget('mall');
     setTimeout(() => {
       navigate('/overview');
     }, 1000);
   };
 
-  const handleBusiness = () => {
-    navigate('/business');
+  const handleBusinessEnter = () => {
+    setZoomTarget('business');
+    setTimeout(() => {
+      navigate('/business');
+    }, 1000);
   };
 
   const stats = [
@@ -52,10 +56,8 @@ const VideoSection: React.FC = () => {
       <div className="video-content-wrapper">
         <motion.div
           style={{ y: contentY }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
+          animate={{ opacity: zoomTarget ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
           className="video-content-stack"
         >
           <span className="video-subtitle">The Hub of Possibility</span>
@@ -80,42 +82,50 @@ const VideoSection: React.FC = () => {
               </motion.div>
             ))}
           </div>
-
-          <div className="dual-cta-wrapper">
-            <motion.button 
-              onClick={handleEnter}
-              animate={isZooming ? { scale: 100, borderRadius: 0 } : { scale: 1 }}
-              transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
-              whileHover={!isZooming ? { scale: 1.05 } : {}}
-              whileTap={!isZooming ? { scale: 0.95 } : {}}
-              className="enter-directory-btn"
-            >
-              <motion.div 
-                animate={isZooming ? { opacity: 0 } : { opacity: 1 }}
-                className="btn-content"
-              >
-                Enter the Directory
-                <div className="btn-icon-wrapper">
-                  <ArrowRight size={16} className="arrow-icon" />
-                </div>
-              </motion.div>
-            </motion.button>
-
-            <motion.button 
-              onClick={handleBusiness}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="business-cta-btn"
-            >
-              <div className="btn-content">
-                Business Opportunities
-                <div className="btn-icon-wrapper business">
-                  <ArrowRight size={16} className="arrow-icon" />
-                </div>
-              </div>
-            </motion.button>
-          </div>
         </motion.div>
+
+        {/* Floating Zoom Elements */}
+        <div className="dual-cta-wrapper">
+          <motion.button 
+            onClick={handleMallEnter}
+            animate={zoomTarget === 'mall' ? { scale: 100, borderRadius: 0, zIndex: 1000 } : { scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
+            whileHover={!zoomTarget ? { scale: 1.05 } : {}}
+            whileTap={!zoomTarget ? { scale: 0.95 } : {}}
+            className="enter-directory-btn"
+            style={{ opacity: zoomTarget === 'business' ? 0 : 1 }}
+          >
+            <motion.div 
+              animate={zoomTarget === 'mall' ? { opacity: 0 } : { opacity: 1 }}
+              className="btn-content"
+            >
+              Enter the Directory
+              <div className="btn-icon-wrapper">
+                <ArrowRight size={16} className="arrow-icon" />
+              </div>
+            </motion.div>
+          </motion.button>
+
+          <motion.button 
+            onClick={handleBusinessEnter}
+            animate={zoomTarget === 'business' ? { scale: 100, borderRadius: 0, zIndex: 1000 } : { scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
+            whileHover={!zoomTarget ? { scale: 1.05 } : {}}
+            whileTap={!zoomTarget ? { scale: 0.95 } : {}}
+            className="business-cta-btn"
+            style={{ opacity: zoomTarget === 'mall' ? 0 : 1 }}
+          >
+            <motion.div 
+              animate={zoomTarget === 'business' ? { opacity: 0 } : { opacity: 1 }}
+              className="btn-content"
+            >
+              Business Opportunities
+              <div className="btn-icon-wrapper business">
+                <ArrowRight size={16} className="arrow-icon" />
+              </div>
+            </motion.div>
+          </motion.button>
+        </div>
       </div>
     </motion.section>
   );
