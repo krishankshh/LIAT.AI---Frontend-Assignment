@@ -19,7 +19,7 @@ const VideoSection: React.FC = () => {
   const handleEnter = () => {
     setIsZooming(true);
     setTimeout(() => {
-      navigate('/directory');
+      navigate('/overview');
     }, 1000);
   };
 

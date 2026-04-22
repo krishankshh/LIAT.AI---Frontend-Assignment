@@ -5,8 +5,6 @@ import NarrativeSlide from './NarrativeSlide';
 import VideoSection from './VideoSection';
 import './LandingView.css';
 
-import './LandingView.css';
-
 const LandingView: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

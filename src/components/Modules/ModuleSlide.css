@@ -1,0 +1,292 @@
+/* ================================================
+   MODULE SLIDE — Shared styles for all deck modules
+   ================================================ */
+
+.module-slide {
+  min-height: 100vh;
+  background-color: #050505;
+  color: white;
+  position: relative;
+}
+
+/* Hero Section */
+.module-hero {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 4rem;
+  overflow: hidden;
+}
+
+.module-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
+  transition: transform 0.8s ease;
+}
+
+.module-hero:hover .module-hero-bg {
+  transform: scale(1.02);
+}
+
+.module-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #050505 0%, transparent 50%, rgba(5, 5, 5, 0.3) 100%);
+}
+
+.module-hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+}
+
+.module-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #fdd500;
+  margin-bottom: 1.5rem;
+  font-family: sans-serif;
+}
+
+.module-title {
+  font-family: serif;
+  font-size: 4rem;
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .module-title {
+    font-size: 5.5rem;
+  }
+}
+
+.module-subtitle {
+  font-family: sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 560px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Stats Bar */
+.module-stats {
+  display: flex;
+  gap: 1px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.module-stat {
+  flex: 1;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: background-color 0.3s;
+}
+
+.module-stat:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.module-stat-value {
+  font-family: serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fdd500;
+  margin-bottom: 0.5rem;
+}
+
+.module-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+}
+
+/* Content Grid */
+.module-content {
+  padding: 5rem 4rem;
+}
+
+.module-section-title {
+  font-family: serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.module-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+
+.module-card:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(253, 213, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.module-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: rgba(253, 213, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fdd500;
+  margin-bottom: 1.5rem;
+}
+
+.module-card-title {
+  font-family: sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.module-card-text {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+}
+
+/* Featured Items (tenants, restaurants, etc.) */
+.module-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.featured-item {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.featured-item:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(253, 213, 0, 0.15);
+}
+
+.featured-item-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.featured-item-category {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* CTA Section */
+.module-cta {
+  padding: 5rem 4rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.module-cta-title {
+  font-family: serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.module-cta-subtitle {
+  font-family: sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.module-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+  color: #050505;
+  padding: 1.25rem 3rem;
+  border-radius: 9999px;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.module-cta-btn:hover {
+  background-color: #fdd500;
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .module-hero {
+    height: 50vh;
+    padding: 2rem;
+  }
+
+  .module-title {
+    font-size: 2.5rem;
+  }
+
+  .module-stats {
+    flex-wrap: wrap;
+  }
+
+  .module-stat {
+    flex: 1 1 50%;
+  }
+
+  .module-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .module-cta {
+    padding: 3rem 1.5rem;
+  }
+}

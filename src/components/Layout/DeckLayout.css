@@ -1,0 +1,18 @@
+.deck-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #050505;
+}
+
+.deck-content {
+  margin-left: 280px;
+  flex: 1;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .deck-content {
+    margin-left: 0;
+  }
+}
