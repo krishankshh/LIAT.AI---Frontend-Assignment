@@ -2,6 +2,8 @@
 
 A high-fidelity, cinematic, and fully interactive browser-based sales tool for North America's largest retail and entertainment destination. This project replaces traditional static pitch decks with an immersive digital experience designed for prospective tenants, sponsors, and event partners.
 
+**Note**: We have used animation instead of video since video seemed too easy and common for the frontend assignment.
+
 ## 🚀 Live Demo
 **URL**: [https://liat-assignment.netlify.app/](https://liat-assignment.netlify.app/)
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Mic2, PartyPopper, Users } from 'lucide-react';
+import { Calendar, Mic2, PartyPopper, Users, TrendingUp, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
 import './ModuleSlide.css';
 
 const fadeUp = {
@@ -11,6 +11,8 @@ const fadeUp = {
 };
 
 const EventsModule: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const stats = [
     { value: '400+', label: 'Events Per Year' },
     { value: '1M+', label: 'Event Attendees' },
@@ -24,6 +26,55 @@ const EventsModule: React.FC = () => {
     { icon: <Calendar size={24} />, title: 'Convention Space', text: 'Flexible expo and meeting spaces for corporate events, trade shows, and product demos — all within walking distance of 520+ retailers.' },
     { icon: <Users size={24} />, title: 'Celebrity Appearances', text: 'A proven platform for celebrity meet-and-greets, book signings, and influencer events that generate massive social engagement.' },
   ];
+
+  const pastHighlights = [
+    {
+      title: 'New Year\'s Eve Spectacular',
+      type: 'Annual Celebration',
+      attendees: '25,000+',
+      impressions: '4.8M social impressions',
+      description: 'A multi-stage, all-ages celebration featuring live performances, countdown experiences, and a midnight balloon drop visible from all four floors.',
+    },
+    {
+      title: 'Summer Concert Series',
+      type: 'Music & Entertainment',
+      attendees: '12,000 per weekend',
+      impressions: '2.1M social impressions',
+      description: '12-week concert series in the Rotunda featuring emerging and established artists, drawing record foot traffic during summer months.',
+    },
+    {
+      title: 'Back-to-School Fashion Week',
+      type: 'Brand Activation',
+      attendees: '45,000 over 5 days',
+      impressions: '3.5M social impressions',
+      description: 'A multi-brand fashion event with runway shows, influencer meet-and-greets, and exclusive in-store promotions across 100+ participating retailers.',
+    },
+    {
+      title: 'Holiday Grand Opening',
+      type: 'Seasonal Campaign',
+      attendees: '60,000 opening weekend',
+      impressions: '8.2M social impressions',
+      description: 'The annual holiday season launch featuring a celebrity tree lighting, Santa\'s arrival, and the unveiling of immersive holiday installations.',
+    },
+    {
+      title: 'International Food Festival',
+      type: 'Culinary Event',
+      attendees: '35,000 over 3 days',
+      impressions: '1.8M social impressions',
+      description: 'A celebration of global cuisine featuring pop-up kitchens from 30+ international chefs, cooking demos, and exclusive tasting menus.',
+    },
+  ];
+
+  const eventTypes = [
+    { type: 'Concert / Performance', capacity: 'Up to 5,000', setup: 'Full production', turnaround: '24-48 hours' },
+    { type: 'Brand Activation', capacity: 'Up to 15,000', setup: 'Custom build', turnaround: '48-72 hours' },
+    { type: 'Corporate Event', capacity: 'Up to 2,000', setup: 'Theater / Banquet', turnaround: '12-24 hours' },
+    { type: 'Product Launch', capacity: 'Up to 8,000', setup: 'Immersive / Experiential', turnaround: '72+ hours' },
+    { type: 'Community Event', capacity: 'Up to 20,000', setup: 'Multi-zone', turnaround: 'Varies' },
+  ];
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % pastHighlights.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + pastHighlights.length) % pastHighlights.length);
 
   return (
     <div className="module-slide">
@@ -59,10 +110,94 @@ const EventsModule: React.FC = () => {
         </div>
       </section>
 
+      {/* Past Event Highlights Carousel */}
+      <section className="module-content">
+        <motion.h2 className="module-section-title" {...fadeUp}>Past Event <span style={{ color: '#fdd500' }}>Highlights</span></motion.h2>
+        <motion.div className="event-carousel" {...fadeUp}>
+          <button className="carousel-btn prev" onClick={prevSlide} aria-label="Previous event">
+            <ChevronLeft size={20} />
+          </button>
+          <div className="carousel-viewport">
+            <motion.div
+              className="carousel-card"
+              key={currentSlide}
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -60 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="carousel-card-header">
+                <h3 className="carousel-card-title">{pastHighlights[currentSlide].title}</h3>
+                <span className="carousel-card-type">{pastHighlights[currentSlide].type}</span>
+              </div>
+              <p className="carousel-card-desc">{pastHighlights[currentSlide].description}</p>
+              <div className="carousel-card-metrics">
+                <div className="carousel-metric">
+                  <Users size={14} />
+                  <span>{pastHighlights[currentSlide].attendees}</span>
+                </div>
+                <div className="carousel-metric">
+                  <TrendingUp size={14} />
+                  <span>{pastHighlights[currentSlide].impressions}</span>
+                </div>
+              </div>
+              <div className="carousel-dots">
+                {pastHighlights.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`carousel-dot ${i === currentSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentSlide(i)}
+                    aria-label={`Go to event ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+          <button className="carousel-btn next" onClick={nextSlide} aria-label="Next event">
+            <ChevronRight size={20} />
+          </button>
+        </motion.div>
+      </section>
+
+      {/* Event Hosting Specs Table */}
+      <section className="module-content">
+        <motion.h2 className="module-section-title" {...fadeUp}>Hosting <span style={{ color: '#fdd500' }}>Capabilities</span></motion.h2>
+        <motion.div className="specs-table-wrapper" {...fadeUp}>
+          <table className="specs-table">
+            <thead>
+              <tr>
+                <th>Event Type</th>
+                <th>Capacity</th>
+                <th>Setup Style</th>
+                <th>Turnaround</th>
+              </tr>
+            </thead>
+            <tbody>
+              {eventTypes.map((et) => (
+                <tr key={et.type}>
+                  <td className="spec-type-cell">{et.type}</td>
+                  <td>{et.capacity}</td>
+                  <td>{et.setup}</td>
+                  <td>{et.turnaround}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </motion.div>
+      </section>
+
+      {/* Enhanced Booking CTA */}
       <div className="module-cta">
         <motion.h2 className="module-cta-title" {...fadeUp}>Book Your <span style={{ color: '#fdd500' }}>Event.</span></motion.h2>
         <motion.p className="module-cta-subtitle" {...fadeUp}>From intimate gatherings to arena-scale productions, make it happen at the nation's most-visited destination.</motion.p>
-        <motion.a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn" {...fadeUp}>Inquire About Events</motion.a>
+        <motion.div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }} {...fadeUp}>
+          <a href="mailto:mike.tvrdik@moa.net" className="module-cta-btn">
+            <Mail size={16} /> Inquire About Events
+          </a>
+          <a href="/venue" className="module-cta-btn" style={{ backgroundColor: 'transparent', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}>
+            Explore The Rotunda →
+          </a>
+        </motion.div>
       </div>
     </div>
   );

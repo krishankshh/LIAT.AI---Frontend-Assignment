@@ -290,3 +290,659 @@
     padding: 3rem 1.5rem;
   }
 }
+
+/* ================================================
+   PHASE 2 — Sponsorship Tiers
+   ================================================ */
+
+.tiers-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.tier-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-price {
+  font-family: serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 1.25rem;
+}
+
+.tier-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tier-benefits li {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.tier-benefits li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: rgba(253, 213, 0, 0.5);
+  font-size: 0.7rem;
+}
+
+/* Case Studies */
+.case-studies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.case-study-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+.case-study-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(253, 213, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.case-study-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+}
+
+.case-study-brand {
+  font-family: sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.case-study-type {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fdd500;
+  background: rgba(253, 213, 0, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.case-study-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.case-study-result {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #34d399;
+  font-weight: 700;
+}
+
+/* ================================================
+   PHASE 2 — Event Carousel
+   ================================================ */
+
+.event-carousel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background: rgba(253, 213, 0, 0.15);
+  border-color: rgba(253, 213, 0, 0.3);
+}
+
+.carousel-viewport {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carousel-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2.5rem;
+}
+
+.carousel-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.carousel-card-title {
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.carousel-card-type {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fdd500;
+  background: rgba(253, 213, 0, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.carousel-card-desc {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-card-metrics {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.carousel-dot.active {
+  background: #fdd500;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ================================================
+   PHASE 2 — Specs Table (Events / Leasing)
+   ================================================ */
+
+.specs-table-wrapper {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 0.85rem;
+}
+
+.specs-table thead {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.specs-table th {
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 800;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.specs-table td {
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.specs-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.spec-type-cell {
+  color: white !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.availability-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.availability-badge.available {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.availability-badge.coming-soon {
+  color: #fdd500;
+  background: rgba(253, 213, 0, 0.1);
+}
+
+/* ================================================
+   PHASE 2 — Specs Accordion (Venue)
+   ================================================ */
+
+.specs-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spec-item {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.spec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.spec-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.spec-header.expanded {
+  background: rgba(253, 213, 0, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spec-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spec-icon {
+  color: #fdd500;
+  display: flex;
+  align-items: center;
+}
+
+.spec-title {
+  font-weight: 700;
+}
+
+.spec-body {
+  overflow: hidden;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 1.25rem 1.5rem 1.25rem 3rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.spec-list li {
+  font-size: 0.825rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.spec-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: rgba(253, 213, 0, 0.5);
+}
+
+/* ================================================
+   PHASE 2 — Calendar (Venue)
+   ================================================ */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.calendar-cell {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.calendar-cell:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.calendar-month {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.calendar-status-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-status-badge.available {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.calendar-status-badge.limited {
+  color: #fdd500;
+  background: rgba(253, 213, 0, 0.1);
+}
+
+.calendar-status-badge.peak {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.calendar-note {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ================================================
+   PHASE 2 — Expandable Leasing Paths
+   ================================================ */
+
+.leasing-paths-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.leasing-path-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.leasing-path-item.expanded {
+  border-color: rgba(253, 213, 0, 0.15);
+}
+
+.leasing-path-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s;
+  gap: 1rem;
+}
+
+.leasing-path-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.leasing-path-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.leasing-path-toggle {
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.leasing-path-details {
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.path-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 2rem 1.5rem;
+}
+
+.path-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.path-detail-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 800;
+}
+
+.path-detail-value {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+
+.path-comparables {
+  padding: 0 2rem 1.5rem;
+}
+
+.comparable-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.comparable-tag {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.path-highlights {
+  padding: 0 2rem 1.5rem;
+}
+
+.path-highlight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.path-highlight-list li {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.path-highlight-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #34d399;
+  font-size: 0.7rem;
+}
+
+.path-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 2rem 2rem;
+  background: rgba(253, 213, 0, 0.1);
+  color: #fdd500;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border: 1px solid rgba(253, 213, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.path-cta-btn:hover {
+  background: rgba(253, 213, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Phase 2 Mobile Responsive */
+@media (max-width: 768px) {
+  .event-carousel {
+    flex-direction: column;
+  }
+
+  .carousel-btn {
+    display: none;
+  }
+
+  .carousel-card {
+    padding: 1.5rem;
+  }
+
+  .carousel-card-metrics {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .case-studies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leasing-path-header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .leasing-path-header-left {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .path-detail-grid {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .path-comparables,
+  .path-highlights {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .path-cta-btn {
+    margin: 0 1.5rem 1.5rem;
+  }
+
+  .specs-table th,
+  .specs-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+  }
+}

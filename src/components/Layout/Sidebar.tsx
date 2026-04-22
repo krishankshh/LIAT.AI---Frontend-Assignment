@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, ShoppingBag, Star, Utensils, 
   Ticket, Calendar, Building2, Map,
-  Menu, X
+  Menu, X, Megaphone, Mic, ArrowLeftRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Sidebar.css';
@@ -24,7 +24,10 @@ const Sidebar: React.FC = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  const navItems = [
+  /** Determine which "mode" the sidebar is in based on the current route */
+  const isBusinessMode = location.pathname.startsWith('/business');
+
+  const mallNavItems = [
     { name: 'Overview', path: '/overview', icon: <LayoutDashboard size={18} /> },
     { name: 'Retail', path: '/retail', icon: <ShoppingBag size={18} /> },
     { name: 'Luxury', path: '/luxury', icon: <Star size={18} /> },
@@ -32,8 +35,17 @@ const Sidebar: React.FC = () => {
     { name: 'Attractions', path: '/attractions', icon: <Ticket size={18} /> },
     { name: 'Events', path: '/events', icon: <Calendar size={18} /> },
     { name: 'Directory + Map', path: '/directory', icon: <Map size={18} /> },
-    { name: 'Leasing', path: '/leasing', icon: <Building2 size={18} /> },
   ];
+
+  const businessNavItems = [
+    { name: 'Hub', path: '/business', icon: <LayoutDashboard size={18} /> },
+    { name: 'Sponsorship', path: '/business/sponsorship', icon: <Megaphone size={18} /> },
+    { name: 'The Rotunda', path: '/business/venue', icon: <Mic size={18} /> },
+    { name: 'Events Platform', path: '/business/events', icon: <Calendar size={18} /> },
+    { name: 'Leasing Paths', path: '/business/leasing', icon: <Building2 size={18} /> },
+  ];
+
+  const navItems = isBusinessMode ? businessNavItems : mallNavItems;
 
   const showSidebar = isDesktop || isOpen;
 
@@ -58,11 +70,17 @@ const Sidebar: React.FC = () => {
               <img src="/moa_logo.png" alt="Mall of America" className="brand-logo-img" />
             </div>
 
+            {/* Mode indicator */}
+            <div className={`sidebar-mode-badge ${isBusinessMode ? 'business' : 'mall'}`}>
+              {isBusinessMode ? 'Business Portal' : 'Mall Experience'}
+            </div>
+
             <nav className="sidebar-nav">
               {navItems.map((item) => (
                 <NavLink 
                   key={item.name}
                   to={item.path}
+                  end={item.path === '/business'}
                   className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
                 >
                   <span className="nav-icon">{item.icon}</span>
@@ -72,12 +90,21 @@ const Sidebar: React.FC = () => {
             </nav>
 
             <div className="sidebar-footer">
+              {/* Mode switcher */}
+              <button
+                className="mode-switch-btn"
+                onClick={() => navigate(isBusinessMode ? '/overview' : '/business')}
+              >
+                <ArrowLeftRight size={14} />
+                {isBusinessMode ? 'Mall Experience' : 'Business Opportunities'}
+              </button>
+
               <div className="contact-status">
                 <div className="status-dot" />
                 Live Support Online
               </div>
               <a href="mailto:lease.inquiry@moa.net" className="quick-action-btn">
-                Request a Tour
+                {isBusinessMode ? 'Contact Partnerships' : 'Request a Tour'}
               </a>
             </div>
           </motion.aside>

@@ -23,6 +23,10 @@ const VideoSection: React.FC = () => {
     }, 1000);
   };
 
+  const handleBusiness = () => {
+    navigate('/business');
+  };
+
   const stats = [
     { label: 'Retail', value: '520+', sub: 'Brands' },
     { label: 'Attractions', value: '25+', sub: 'Experiences' },
@@ -77,24 +81,40 @@ const VideoSection: React.FC = () => {
             ))}
           </div>
 
-          <motion.button 
-            onClick={handleEnter}
-            animate={isZooming ? { scale: 100, borderRadius: 0 } : { scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
-            whileHover={!isZooming ? { scale: 1.05 } : {}}
-            whileTap={!isZooming ? { scale: 0.95 } : {}}
-            className="enter-directory-btn"
-          >
-            <motion.div 
-              animate={isZooming ? { opacity: 0 } : { opacity: 1 }}
-              className="btn-content"
+          <div className="dual-cta-wrapper">
+            <motion.button 
+              onClick={handleEnter}
+              animate={isZooming ? { scale: 100, borderRadius: 0 } : { scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
+              whileHover={!isZooming ? { scale: 1.05 } : {}}
+              whileTap={!isZooming ? { scale: 0.95 } : {}}
+              className="enter-directory-btn"
             >
-              Enter the Directory
-              <div className="btn-icon-wrapper">
-                <ArrowRight size={16} className="arrow-icon" />
+              <motion.div 
+                animate={isZooming ? { opacity: 0 } : { opacity: 1 }}
+                className="btn-content"
+              >
+                Enter the Directory
+                <div className="btn-icon-wrapper">
+                  <ArrowRight size={16} className="arrow-icon" />
+                </div>
+              </motion.div>
+            </motion.button>
+
+            <motion.button 
+              onClick={handleBusiness}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="business-cta-btn"
+            >
+              <div className="btn-content">
+                Business Opportunities
+                <div className="btn-icon-wrapper business">
+                  <ArrowRight size={16} className="arrow-icon" />
+                </div>
               </div>
-            </motion.div>
-          </motion.button>
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </motion.section>

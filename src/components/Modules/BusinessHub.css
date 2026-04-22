@@ -1,0 +1,103 @@
+/* ================================================
+   BUSINESS HUB — Dashboard-style opportunity cards
+   ================================================ */
+
+.hub-opportunities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.hub-opportunity-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hub-opportunity-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(253, 213, 0, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hub-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.hub-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(253, 213, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fdd500;
+}
+
+.hub-card-highlight {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fdd500;
+  background: rgba(253, 213, 0, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.hub-card-title {
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.hub-card-desc {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.7;
+  margin: 0;
+  flex: 1;
+}
+
+.hub-card-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 0.75rem;
+  transition: all 0.3s;
+}
+
+.hub-opportunity-card:hover .hub-card-action {
+  color: #fdd500;
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .hub-opportunities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-opportunity-card {
+    padding: 1.75rem;
+  }
+}
