@@ -59,7 +59,7 @@ const LuxuryModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80)',
+              'url(/luxury_hero.png)',
           }}
         />
         <div className="module-hero-overlay" />

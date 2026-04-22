@@ -35,7 +35,7 @@ const OverviewModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1519567241046-7f570f348f24?w=1920&q=80)' }} />
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/moa_overview_hero.png)' }} />
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">Property Overview</span>

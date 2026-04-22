@@ -64,7 +64,7 @@ const RetailModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=1920&q=80)',
+              'url(/retail_hero.png)',
           }}
         />
         <div className="module-hero-overlay" />

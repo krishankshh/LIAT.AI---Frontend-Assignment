@@ -28,7 +28,7 @@ const EventsModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1920&q=80)' }} />
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/events_hero.png)' }} />
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">Events & Platform</span>

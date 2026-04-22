@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Search, MapPin, ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Search, MapPin, Building2, Utensils, Star, Info } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { moaData } from '../../data';
 import { Store } from '../../types';
 import './DirectoryView.css';
@@ -28,46 +28,56 @@ const DirectoryView: React.FC = () => {
     });
   }, [searchTerm, activeCategory, activeLevel]);
 
-  // SVG store positions for the floor plan (mapped to corridor/wing)
-  const storePositions: Record<string, { x: number; y: number }> = {
-    'n100': { x: 400, y: 60 },  'n102': { x: 300, y: 80 },
-    'n103': { x: 500, y: 80 },  'n104': { x: 350, y: 100 },
-    'n201': { x: 450, y: 60 },  'n202': { x: 400, y: 80 },
-    'n203': { x: 350, y: 60 },  'n301': { x: 400, y: 100 },
-    's100': { x: 400, y: 440 }, 's101': { x: 300, y: 420 },
-    's102': { x: 500, y: 420 }, 's103': { x: 350, y: 400 },
-    's201': { x: 450, y: 440 },
-    'e100': { x: 700, y: 250 }, 'e101': { x: 680, y: 200 },
-    'e201': { x: 700, y: 300 },
-    'w101': { x: 100, y: 200 }, 'w102': { x: 100, y: 280 },
-    'w103': { x: 120, y: 240 }, 'w104': { x: 80, y: 320 },
-    'c100': { x: 400, y: 250 },
+  // Map stores to specific "Blocks" on the floor plan
+  // Coordinates are designed to align with the SVG paths below
+  const storeBlocks: Record<string, { x: number; y: number; w: number; h: number }> = {
+    'n100': { x: 340, y: 60, w: 120, h: 50 },  // Nordstrom (North)
+    'n102': { x: 260, y: 60, w: 70, h: 40 },   // Zara
+    'n103': { x: 470, y: 60, w: 70, h: 40 },   // H&M
+    'n104': { x: 550, y: 60, w: 40, h: 40 },   // Peloton
+    'n201': { x: 300, y: 60, w: 40, h: 40 },   // Nike (L2)
+    'n202': { x: 470, y: 60, w: 40, h: 40 },   // Cheesecake Factory (L2)
+    'n203': { x: 350, y: 60, w: 40, h: 40 },   // Uniqlo (L2)
+    'n301': { x: 400, y: 60, w: 40, h: 40 },   // Shake Shack (L3)
+    's100': { x: 340, y: 390, w: 120, h: 50 }, // Macy's (South)
+    's101': { x: 260, y: 400, w: 70, h: 40 },  // Lululemon
+    's102': { x: 470, y: 400, w: 70, h: 40 },  // LEGO
+    's103': { x: 550, y: 400, w: 40, h: 40 },  // Tesla
+    's201': { x: 300, y: 400, w: 40, h: 40 },  // AE (L2)
+    'e100': { x: 670, y: 180, w: 50, h: 140 }, // SEA LIFE (East)
+    'e101': { x: 650, y: 120, w: 40, h: 50 },  // Rainforest Cafe
+    'e201': { x: 650, y: 330, w: 40, h: 50 },  // Sephora (L2)
+    'w101': { x: 80, y: 180, w: 50, h: 140 },  // Apple (West)
+    'w102': { x: 110, y: 120, w: 40, h: 50 },  // Hollister
+    'w103': { x: 110, y: 330, w: 40, h: 50 },  // Microsoft
+    'w104': { x: 110, y: 390, w: 40, h: 50 },  // Warby Parker
+    'c100': { x: 250, y: 170, w: 300, h: 160 },// Nickelodeon Universe
   };
 
   return (
     <div className="directory-page">
-      {/* Header */}
+      {/* Search & Header */}
       <div className="directory-header-bar">
         <div className="directory-header-left">
-          <h1 className="directory-title">Directory + Map</h1>
-          <p className="directory-desc">Explore 520+ stores, dining, and attractions across 4 levels.</p>
+          <h1 className="directory-title">Mall Directory</h1>
+          <p className="directory-desc">Interactive architectural plan of Mall of America.</p>
         </div>
         <div className="directory-search-box">
           <Search size={18} className="directory-search-icon" />
           <input 
             type="text"
             className="directory-search-input"
-            placeholder="Search stores, restaurants, attractions..."
+            placeholder="Find a store, restaurant, or attraction..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="directory-filters-bar">
+      {/* Levels & Filters */}
+      <div className="directory-filters-bar scrollbar-hide">
         <div className="filter-group">
-          <span className="filter-label">Level</span>
+          <span className="filter-label">Levels</span>
           <div className="filter-pills">
             {moaData.levels.map((level) => (
               <button
@@ -75,13 +85,13 @@ const DirectoryView: React.FC = () => {
                 className={`filter-pill ${activeLevel === level ? 'active-level' : ''}`}
                 onClick={() => setActiveLevel(level)}
               >
-                {level}
+                Floor {level}
               </button>
             ))}
           </div>
         </div>
         <div className="filter-group">
-          <span className="filter-label">Category</span>
+          <span className="filter-label">Filter By</span>
           <div className="filter-pills">
             {moaData.categories.map((cat) => (
               <button
@@ -96,100 +106,140 @@ const DirectoryView: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content: Map + Store Grid */}
       <div className="directory-body">
-        {/* SVG Floor Plan */}
-        <div className="floor-plan-container">
-          <svg viewBox="0 0 800 500" className="floor-plan-svg">
-            {/* Building Outline */}
-            <rect x="50" y="30" width="700" height="440" rx="20" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="2" />
-            
-            {/* Wings */}
-            {/* North Wing */}
-            <rect x="200" y="30" width="400" height="120" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <text x="400" y="20" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="11" fontWeight="700" letterSpacing="0.1em">NORTH</text>
-            
-            {/* South Wing */}
-            <rect x="200" y="350" width="400" height="120" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <text x="400" y="490" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="11" fontWeight="700" letterSpacing="0.1em">SOUTH</text>
-            
-            {/* East Wing */}
-            <rect x="600" y="150" width="150" height="200" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <text x="760" y="255" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="11" fontWeight="700" letterSpacing="0.1em">EAST</text>
-            
-            {/* West Wing */}
-            <rect x="50" y="150" width="150" height="200" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <text x="40" y="255" textAnchor="end" fill="rgba(255,255,255,0.25)" fontSize="11" fontWeight="700" letterSpacing="0.1em">WEST</text>
+        {/* Interactive SVG Map */}
+        <div className="map-view-container">
+          <div className="map-canvas-wrapper">
+            <svg viewBox="0 0 800 500" className="architectural-map-svg">
+              <defs>
+                <filter id="shadow">
+                  <feDropShadow dx="0" dy="4" stdDeviation="4" floodOpacity="0.5" />
+                </filter>
+              </defs>
 
-            {/* Center Atrium (Nickelodeon Universe) */}
-            <rect x="250" y="170" width="300" height="160" rx="12" fill="rgba(253,213,0,0.03)" stroke="rgba(253,213,0,0.15)" strokeWidth="1" strokeDasharray="4 4" />
-            <text x="400" y="255" textAnchor="middle" fill="rgba(253,213,0,0.3)" fontSize="10" fontWeight="700" letterSpacing="0.15em">NICKELODEON UNIVERSE</text>
+              {/* Mall Layout Foundations */}
+              {/* Central Corridor Loop */}
+              <rect x="210" y="140" width="380" height="220" rx="10" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="40" />
+              
+              {/* Wing Backdrops */}
+              <rect x="220" y="50" width="360" height="70" fill="rgba(255,255,255,0.02)" rx="5" />
+              <rect x="220" y="380" width="360" height="70" fill="rgba(255,255,255,0.02)" rx="5" />
+              <rect x="70" y="140" width="70" height="220" fill="rgba(255,255,255,0.02)" rx="5" />
+              <rect x="660" y="140" width="70" height="220" fill="rgba(255,255,255,0.02)" rx="5" />
 
-            {/* Corridors */}
-            <line x1="200" y1="250" x2="250" y2="250" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="3 3" />
-            <line x1="550" y1="250" x2="600" y2="250" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="3 3" />
-            <line x1="400" y1="150" x2="400" y2="170" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="3 3" />
-            <line x1="400" y1="330" x2="400" y2="350" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="3 3" />
+              {/* Nickelodeon Universe (Center Atrium) */}
+              <motion.rect 
+                x="250" y="170" width="300" height="160" rx="20" 
+                fill={hoveredStore === 'nickelodeon' ? 'rgba(253, 213, 0, 0.15)' : 'rgba(253, 213, 0, 0.05)'} 
+                stroke="rgba(253, 213, 0, 0.2)" 
+                strokeWidth="1.5"
+                onMouseEnter={() => setHoveredStore('nickelodeon')}
+                onMouseLeave={() => setHoveredStore(null)}
+                style={{ cursor: 'pointer', transition: '0.3s' }}
+              />
+              <text x="400" y="255" textAnchor="middle" fill="rgba(253, 213, 0, 0.4)" fontSize="10" fontWeight="900" letterSpacing="0.3em" style={{ pointerEvents: 'none' }}>NICKELODEON UNIVERSE</text>
 
-            {/* Store markers */}
-            {filteredStores.map((store: Store) => {
-              const pos = storePositions[store.pathId];
-              if (!pos) return null;
-              const isHovered = hoveredStore === store.id;
-              return (
-                <g key={store.id}>
-                  <circle
-                    cx={pos.x} cy={pos.y} r={isHovered ? 10 : 6}
-                    fill={isHovered ? '#fdd500' : 'rgba(253,213,0,0.7)'}
-                    stroke={isHovered ? '#fff' : 'none'}
-                    strokeWidth="2"
-                    style={{ transition: 'all 0.2s', cursor: 'pointer' }}
+              {/* Render Store Blocks Instead of Points */}
+              {filteredStores.map((store: Store) => {
+                const block = storeBlocks[store.pathId];
+                if (!block) return null;
+                const isHovered = hoveredStore === store.id;
+
+                return (
+                  <motion.g 
+                    key={store.id}
                     onMouseEnter={() => setHoveredStore(store.id)}
                     onMouseLeave={() => setHoveredStore(null)}
-                  />
-                  {isHovered && (
-                    <>
-                      <rect x={pos.x - 50} y={pos.y - 35} width="100" height="22" rx="4" fill="#fdd500" />
-                      <text x={pos.x} y={pos.y - 20} textAnchor="middle" fill="#050505" fontSize="10" fontWeight="700">{store.name}</text>
-                    </>
-                  )}
-                </g>
-              );
-            })}
-          </svg>
-          <div className="floor-plan-legend">
-            <span className="legend-dot" /> Store Location &nbsp;&nbsp;
-            <span className="legend-dot atrium" /> Attraction
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {/* The Store Unit Rectangle */}
+                    <motion.rect
+                      x={block.x}
+                      y={block.y}
+                      width={block.w}
+                      height={block.h}
+                      rx={4}
+                      fill={isHovered ? '#fdd500' : 'rgba(255, 255, 255, 0.08)'}
+                      stroke={isHovered ? '#fff' : 'rgba(255, 255, 255, 0.15)'}
+                      strokeWidth={isHovered ? 2 : 1}
+                      initial={false}
+                      animate={{ 
+                        scale: isHovered ? 1.05 : 1,
+                        fill: isHovered ? '#fdd500' : 'rgba(255, 255, 255, 0.08)'
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    />
+                    
+                    {/* Hover Label */}
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.foreignObject 
+                          x={block.x + block.w / 2 - 75} 
+                          y={block.y - 45} 
+                          width="150" 
+                          height="40"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                        >
+                          <div className="map-block-tooltip">
+                            <div className="tooltip-title">{store.name}</div>
+                            <div className="tooltip-subtitle">{store.category}</div>
+                          </div>
+                        </motion.foreignObject>
+                      )}
+                    </AnimatePresence>
+                  </motion.g>
+                );
+              })}
+
+              {/* Compass / Wing Indicators */}
+              <g opacity="0.3" fontSize="9" fontWeight="800" letterSpacing="0.2em" fill="white">
+                <text x="400" y="30" textAnchor="middle">NORTH</text>
+                <text x="400" y="485" textAnchor="middle">SOUTH</text>
+                <text x="780" y="250" textAnchor="middle" transform="rotate(90, 780, 250)">EAST</text>
+                <text x="20" y="250" textAnchor="middle" transform="rotate(-90, 20, 250)">WEST</text>
+              </g>
+            </svg>
           </div>
         </div>
 
-        {/* Store Grid */}
-        <div className="store-grid-section">
-          <div className="store-grid-header">
-            <span className="store-count">{filteredStores.length} Results</span>
-            <span className="store-level-badge">Level {activeLevel}</span>
+        {/* Store Grid Results */}
+        <div className="store-results-container">
+          <div className="results-meta">
+            <span className="results-badge">{filteredStores.length} Matching Results</span>
           </div>
-          <div className="store-grid">
+          
+          <div className="store-results-grid">
             {filteredStores.map((store: Store) => (
               <motion.div 
                 key={store.id} 
-                className={`store-grid-card ${hoveredStore === store.id ? 'highlighted' : ''}`}
+                className={`store-entry-card ${hoveredStore === store.id ? 'active' : ''}`}
                 onMouseEnter={() => setHoveredStore(store.id)}
                 onMouseLeave={() => setHoveredStore(null)}
                 {...fadeUp}
               >
-                <div className="store-grid-name">{store.name}</div>
-                <div className="store-grid-meta">
-                  <span className="store-grid-category">{store.category}</span>
-                  <span className="store-grid-location">
-                    <MapPin size={10} />
-                    {store.corridor} Wing
-                  </span>
+                <div className="entry-icon">
+                  {store.category === 'Dining' ? <Utensils size={18} /> : 
+                   store.category === 'Attractions' ? <Star size={18} /> : <Building2 size={18} />}
+                </div>
+                <div className="entry-content">
+                  <h3 className="entry-name">{store.name}</h3>
+                  <div className="entry-details">
+                    <span className="entry-cat">{store.category}</span>
+                    <span className="entry-sep">•</span>
+                    <span className="entry-loc">{store.corridor} Wing, Floor {store.level}</span>
+                  </div>
+                </div>
+                <div className="entry-action">
+                  <MapPin size={16} />
                 </div>
               </motion.div>
             ))}
             {filteredStores.length === 0 && (
-              <div className="no-results-msg">No stores match your search.</div>
+              <div className="no-results-view">
+                <p>No results found for your search.</p>
+              </div>
             )}
           </div>
         </div>

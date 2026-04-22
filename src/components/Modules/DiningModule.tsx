@@ -59,7 +59,7 @@ const DiningModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80)',
+              'url(/dining_hero.png)',
           }}
         />
         <div className="module-hero-overlay" />

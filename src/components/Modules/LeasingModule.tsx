@@ -28,7 +28,7 @@ const LeasingModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80)' }} />
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/leasing_hero.png)' }} />
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">Leasing & Partnerships</span>

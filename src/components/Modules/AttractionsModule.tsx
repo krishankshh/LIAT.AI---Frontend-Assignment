@@ -28,7 +28,7 @@ const AttractionsModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=1920&q=80)' }} />
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/attractions_hero.png)' }} />
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">Attractions & Entertainment</span>
