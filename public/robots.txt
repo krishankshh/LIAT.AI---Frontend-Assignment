@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mallofamerica.com/sitemap.xml
+Sitemap: https://liat-assignment.netlify.app/sitemap.xml
