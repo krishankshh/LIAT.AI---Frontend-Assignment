@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useTransform, MotionValue } from 'framer-motion';
+import './MallScrollExperience.css';
 
 const TOTAL_FRAMES = 120;
 
@@ -106,33 +107,33 @@ const MallScrollExperience: React.FC<MallScrollExperienceProps> = ({ progress, c
   }, [isLoaded, images, frameIndex]);
 
   return (
-    <div className="relative h-[800vh] bg-moa-bg">
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <div className="experience-container">
+      <div className="sticky-viewport">
         <canvas
           ref={canvasRef}
-          className="block h-full w-full object-cover"
+          className="experience-canvas"
         />
 
-        <div className="noise-overlay pointer-events-none absolute inset-0 opacity-0" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+        <div className="noise-overlay" />
+        <div className="vignette-overlay" />
 
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="content-layer">
           {children}
         </div>
 
         {!isLoaded && (
-          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-moa-bg">
-            <div className="mb-8 font-serif text-3xl font-bold tracking-tighter text-white uppercase">
-              MALL OF <span className="text-moa-yellow">AMERICA</span>
+          <div className="loading-screen">
+            <div className="loading-logo">
+              MALL OF <span className="highlight-yellow">AMERICA</span>
             </div>
-            <div className="h-[2px] w-48 bg-white/10 overflow-hidden rounded-full">
+            <div className="progress-track">
               <motion.div
-                className="h-full bg-moa-yellow"
+                className="progress-fill"
                 initial={{ width: 0 }}
                 animate={{ width: `${loadingProgress}%` }}
               />
             </div>
-            <div className="mt-4 font-sans text-[10px] uppercase tracking-[0.2em] text-white/40">
+            <div className="loading-text">
               Initializing Experience {loadingProgress}%
             </div>
           </div>
