@@ -64,7 +64,7 @@ const LandingView: React.FC = () => {
 
           <NarrativeSlide progress={smoothProgress} range={[0.48, 0.55, 0.65, 0.72]} align="right">
             <h2 className="narrative-heading">
-              Luxury. <br />Experience. <br /><span className="dimmed">Icons.</span>
+              Luxury. <br />Experience. <br /><span className="highlight-yellow">Icons.</span>
             </h2>
             <p className="narrative-text right-aligned">
               From world-class brands to global attractions, the journey evolves at every turn.
