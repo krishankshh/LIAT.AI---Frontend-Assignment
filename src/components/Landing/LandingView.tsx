@@ -49,7 +49,7 @@ const LandingView: React.FC = () => {
   const [discoveryOpen, setDiscoveryOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
@@ -57,6 +57,7 @@ const LandingView: React.FC = () => {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
+  const logoHeight = useTransform(scrollY, [0, 150], [64, 24]);
 
   // Scroll listener for navbar
   const [navVisible, setNavVisible] = useState(true);
@@ -141,7 +142,12 @@ const LandingView: React.FC = () => {
           <div className="nav-row-inner">
             <div className="navbar-brand-v3" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="logo-bg-block">
-                <img src="/moa_logo.png" alt="Mall of America" className="navbar-logo-v3" />
+                <motion.img 
+                  src="/moa_logo.png" 
+                  alt="Mall of America" 
+                  className="navbar-logo-v3" 
+                  style={{ height: logoHeight }}
+                />
               </div>
             </div>
 
