@@ -10,11 +10,13 @@
 
 .hub-opportunity-card {
   background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 1.25rem;
   padding: 2.5rem;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.4s var(--ease-out-expo);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -58,7 +60,7 @@
 }
 
 .hub-card-title {
-  font-family: sans-serif;
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
@@ -106,12 +108,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   padding: 1.25rem 1.5rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s var(--ease-out-expo);
 }
 
 .deck-overview-card:hover {
@@ -170,12 +174,15 @@
 
 .resource-vault-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
   padding: 2.5rem 2rem;
   overflow: hidden;
   text-align: center;
+  transition: all 0.3s var(--ease-out-expo);
 }
 
 .vault-card-lock {

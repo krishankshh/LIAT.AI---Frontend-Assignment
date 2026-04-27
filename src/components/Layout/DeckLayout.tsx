@@ -4,9 +4,8 @@ import Sidebar from './Sidebar';
 import './DeckLayout.css';
 
 /**
- * DeckLayout — Wraps all inner "slide" pages with the persistent sidebar.
- * The landing/overview page does NOT use this layout to preserve its
- * full-screen immersive experience.
+ * DeckLayout — Full-width layout with a glassmorphism top navbar.
+ * All inner "deck" pages render full-width beneath the navbar.
  */
 const DeckLayout: React.FC = () => {
   return (

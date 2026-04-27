@@ -19,14 +19,14 @@ const LuxuryModule: React.FC = () => {
   ];
 
   const brands = [
-    { name: 'Louis Vuitton', category: 'Fashion' },
-    { name: 'Gucci', category: 'Fashion' },
-    { name: 'Burberry', category: 'Fashion' },
-    { name: 'Tiffany & Co.', category: 'Jewelry' },
-    { name: 'Coach', category: 'Leather Goods' },
-    { name: 'Michael Kors', category: 'Fashion' },
-    { name: 'Kate Spade', category: 'Fashion' },
-    { name: 'Swarovski', category: 'Jewelry' },
+    { name: 'Louis Vuitton', category: 'Fashion', logo: '/logos/brands/louisvuitton-com-logo.png' },
+    { name: 'Gucci', category: 'Fashion', logo: '/logos/brands/gucci-com-logo.png' },
+    { name: 'Burberry', category: 'Fashion', logo: '/logos/brands/burberry-com-logo.png' },
+    { name: 'Tiffany & Co.', category: 'Jewelry', logo: '/logos/brands/tiffany-com-logo.png' },
+    { name: 'Coach', category: 'Leather Goods', logo: '/logos/brands/coach-com-logo.png' },
+    { name: 'Michael Kors', category: 'Fashion', logo: '/logos/brands/michaelkors-com-logo.png' },
+    { name: 'Kate Spade', category: 'Fashion', logo: '/logos/brands/katespade-com-logo.png' },
+    { name: 'Swarovski', category: 'Jewelry', logo: '/logos/brands/swarovski-com-logo.png' },
   ];
 
   const features = [
@@ -62,16 +62,19 @@ const LuxuryModule: React.FC = () => {
               'url(/luxury_hero.png)',
           }}
         />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/luxury_hero.png">
+          <source src="/videos/luxury_ambient.mp4" type="video/mp4" />
+        </video>
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
-          <span className="module-eyebrow">Luxury & Prestige</span>
+          <span className="module-eyebrow">The Luxury Collection</span>
           <h1 className="module-title">
-            Where Brands <br />
-            <span style={{ color: '#fdd500' }}>Become Icons.</span>
+            Sophisticated. <br />
+            <span style={{ color: '#fdd500' }}>Exclusive. Rare.</span>
           </h1>
           <p className="module-subtitle">
-            An elevated, curated shopping environment designed for the world's most
-            discerning brands and their clientele.
+            A dedicated luxury wing housing the world's most coveted fashion houses 
+            and jewelry boutiques in a setting of unparalleled elegance.
           </p>
         </motion.div>
       </div>
@@ -92,6 +95,30 @@ const LuxuryModule: React.FC = () => {
         ))}
       </div>
 
+      <div className="module-grid-section luxury-wing">
+        <motion.h2 {...fadeUp} className="section-title">The Luxury Portfolio</motion.h2>
+        <div className="tenants-grid">
+          {brands.map((b, i) => (
+            <motion.div 
+              key={b.name}
+              className="tenant-card luxury-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <div className="tenant-logo-wrapper">
+                <img src={b.logo} alt={b.name} className="tenant-brand-logo invert-light" />
+              </div>
+              <div className="tenant-info">
+                <span className="tenant-name">{b.name}</span>
+                <span className="tenant-cat">{b.category}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
       <section className="module-content">
         <motion.h2 className="module-section-title" {...fadeUp}>
           The Luxury <span style={{ color: '#fdd500' }}>Experience</span>
@@ -102,20 +129,6 @@ const LuxuryModule: React.FC = () => {
               <div className="module-card-icon">{f.icon}</div>
               <div className="module-card-title">{f.title}</div>
               <div className="module-card-text">{f.text}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="module-content" style={{ paddingTop: 0 }}>
-        <motion.h2 className="module-section-title" {...fadeUp}>
-          Flagship <span style={{ color: '#fdd500' }}>Brands</span>
-        </motion.h2>
-        <div className="module-featured-grid">
-          {brands.map((b) => (
-            <motion.div key={b.name} className="featured-item" {...fadeUp}>
-              <div className="featured-item-name">{b.name}</div>
-              <div className="featured-item-category">{b.category}</div>
             </motion.div>
           ))}
         </div>

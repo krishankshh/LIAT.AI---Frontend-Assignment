@@ -4,7 +4,7 @@
 
 .inquiry-portal {
   min-height: 100vh;
-  background-color: #050505;
+  background-color: var(--moa-bg);
   color: white;
 }
 
@@ -18,21 +18,24 @@
 
 .inquiry-eyebrow {
   display: inline-block;
-  font-size: 10px;
+  font-size: 0.6rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: #fdd500;
+  letter-spacing: 0.35em;
+  color: var(--moa-yellow);
   margin-bottom: 1.5rem;
-  font-family: sans-serif;
+  font-family: var(--font-sans);
+  padding: 0.4rem 1rem;
+  background: rgba(253, 213, 0, 0.08);
+  border: 1px solid rgba(253, 213, 0, 0.15);
+  border-radius: 9999px;
 }
 
 .inquiry-title {
-  font-family: serif;
+  font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+  letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
 
@@ -115,12 +118,14 @@
 .form-input,
 .form-select,
 .form-textarea {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 1rem 1.25rem;
   color: white;
-  font-family: sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.875rem;
   transition: all 0.3s;
   outline: none;
@@ -164,24 +169,25 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background-color: white;
+  background: var(--moa-yellow);
   color: #050505;
-  padding: 1.25rem 3rem;
-  border-radius: 9999px;
-  font-family: sans-serif;
+  padding: 1.1rem 3rem;
+  border-radius: 12px;
+  font-family: var(--font-sans);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   font-size: 0.75rem;
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s var(--ease-out-expo);
   width: 100%;
 }
 
 .form-submit-btn:hover {
-  background-color: #fdd500;
-  transform: scale(1.02);
+  background: #f0c800;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(253, 213, 0, 0.3);
 }
 
 .form-submit-btn:disabled {

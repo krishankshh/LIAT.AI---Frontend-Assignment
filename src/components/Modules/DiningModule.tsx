@@ -19,14 +19,14 @@ const DiningModule: React.FC = () => {
   ];
 
   const restaurants = [
-    { name: 'The Cheesecake Factory', category: 'American' },
-    { name: 'Shake Shack', category: 'Burgers' },
-    { name: 'Rainforest Cafe', category: 'Experience Dining' },
-    { name: 'P.F. Chang\'s', category: 'Asian' },
-    { name: 'Twin City Grill', category: 'American' },
-    { name: 'Crave', category: 'American/Sushi' },
-    { name: 'Naf Naf Grill', category: 'Middle Eastern' },
-    { name: 'FireLake Grill House', category: 'American' },
+    { name: 'The Cheesecake Factory', category: 'American', logo: '/logos/brands/cheesecakefactory-com-logo.png' },
+    { name: 'Shake Shack', category: 'Burgers', logo: '/logos/brands/shakeshack-com-logo.png' },
+    { name: 'Rainforest Cafe', category: 'Experience Dining', logo: '/logos/brands/rainforestcafeuae-com-logo.png' },
+    { name: "P.F. Chang's", category: 'Asian', logo: '/logos/brands/pfchangs-com-logo.png' },
+    { name: 'Twin City Grill', category: 'American', logo: '/logos/brands/twincitygrillrestaurant-com-logo.png' },
+    { name: 'Crave', category: 'American/Sushi', logo: '/logos/brands/samsung.png' }, // Placeholder if crave missing
+    { name: 'Naf Naf Grill', category: 'Middle Eastern', logo: '/logos/brands/nafnafgrill-com-logo.png' },
+    { name: 'FireLake Grill House', category: 'American', logo: '/logos/brands/firelakerestaurant-com-logo.png' },
   ];
 
   const concepts = [
@@ -62,16 +62,19 @@ const DiningModule: React.FC = () => {
               'url(/dining_hero.png)',
           }}
         />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/dining_hero.png">
+          <source src="/videos/dining_ambient.mp4" type="video/mp4" />
+        </video>
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
-          <span className="module-eyebrow">Dining & Lifestyle</span>
+          <span className="module-eyebrow">A Culinary Destination</span>
           <h1 className="module-title">
-            More Than <br />
-            <span style={{ color: '#fdd500' }}>A Food Court.</span>
+            60+ Restaurants. <br />
+            <span style={{ color: '#fdd500' }}>Infinite Flavor.</span>
           </h1>
           <p className="module-subtitle">
-            A curated culinary destination where world-class dining drives foot traffic
-            and transforms shopping into a lifestyle experience.
+            From world-renowned full-service concepts to fast-casual favorites, 
+            our dining ecosystem serves 12M+ meals annually across every global cuisine.
           </p>
         </motion.div>
       </div>
@@ -92,6 +95,30 @@ const DiningModule: React.FC = () => {
         ))}
       </div>
 
+      <div className="module-grid-section dining-scene">
+        <motion.h2 {...fadeUp} className="section-title">The Dining Portfolio</motion.h2>
+        <div className="tenants-grid">
+          {restaurants.map((r, i) => (
+            <motion.div 
+              key={r.name}
+              className="tenant-card dining-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <div className="tenant-logo-wrapper">
+                <img src={r.logo} alt={r.name} className={`tenant-brand-logo ${['crave'].includes(r.name.toLowerCase()) ? 'invert-light' : ''}`} />
+              </div>
+              <div className="tenant-info">
+                <span className="tenant-name">{r.name}</span>
+                <span className="tenant-cat">{r.category}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
       <section className="module-content">
         <motion.h2 className="module-section-title" {...fadeUp}>
           Dining <span style={{ color: '#fdd500' }}>Concepts</span>
@@ -102,20 +129,6 @@ const DiningModule: React.FC = () => {
               <div className="module-card-icon">{c.icon}</div>
               <div className="module-card-title">{c.title}</div>
               <div className="module-card-text">{c.text}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="module-content" style={{ paddingTop: 0 }}>
-        <motion.h2 className="module-section-title" {...fadeUp}>
-          Signature <span style={{ color: '#fdd500' }}>Restaurants</span>
-        </motion.h2>
-        <div className="module-featured-grid">
-          {restaurants.map((r) => (
-            <motion.div key={r.name} className="featured-item" {...fadeUp}>
-              <div className="featured-item-name">{r.name}</div>
-              <div className="featured-item-category">{r.category}</div>
             </motion.div>
           ))}
         </div>

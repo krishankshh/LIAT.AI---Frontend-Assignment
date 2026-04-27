@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, Fish, Rocket, Gamepad2 } from 'lucide-react';
+import { Gamepad2 } from 'lucide-react';
 import './ModuleSlide.css';
 
 const fadeUp = {
@@ -19,16 +19,35 @@ const AttractionsModule: React.FC = () => {
   ];
 
   const attractions = [
-    { icon: <Rocket size={24} />, title: 'Nickelodeon Universe', text: "The nation's largest indoor theme park with 27 rides across 7 acres — the single biggest foot traffic driver." },
-    { icon: <Fish size={24} />, title: 'SEA LIFE Aquarium', text: '1.2M gallons of water, 300+ species, and an immersive walk-through tunnel drawing families year-round.' },
-    { icon: <Compass size={24} />, title: 'FlyOver America', text: "A state-of-the-art flight ride taking guests on a breathtaking aerial journey across America's landscapes." },
-    { icon: <Gamepad2 size={24} />, title: 'Crayola Experience', text: '60,000 sq ft of interactive family fun that extends average visit duration by 90 minutes.' },
+    { 
+      name: 'Nickelodeon Universe', 
+      logo: '/logos/brands/nickelodeonuniverse-com-logo.png',
+      text: "The nation's largest indoor theme park with 27 rides across 7 acres — the single biggest foot traffic driver." 
+    },
+    { 
+      name: 'SEA LIFE Aquarium', 
+      logo: '/logos/brands/visitsealife-com-logo.png',
+      text: '1.2M gallons of water, 300+ species, and an immersive walk-through tunnel drawing families year-round.' 
+    },
+    { 
+      name: 'FlyOver America', 
+      logo: '/logos/brands/tesla.png', // Placeholder if flyover missing
+      text: "A state-of-the-art flight ride taking guests on a breathtaking aerial journey across America's landscapes." 
+    },
+    { 
+      name: 'Crayola Experience', 
+      logo: '/logos/brands/crayolaexperiencemn-com-logo.png',
+      text: '60,000 sq ft of interactive family fun that extends average visit duration by 90 minutes.' 
+    },
   ];
 
   return (
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/attractions_hero.png)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/attractions_hero.png">
+          <source src="/videos/attractions_ambient.mp4" type="video/mp4" />
+        </video>
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">Attractions & Entertainment</span>
@@ -39,25 +58,43 @@ const AttractionsModule: React.FC = () => {
 
       <div className="module-stats">
         {stats.map((s) => (
-          <motion.div key={s.label} className="module-stat" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <motion.div
+            key={s.label}
+            className="module-stat"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="module-stat-value">{s.value}</div>
             <div className="module-stat-label">{s.label}</div>
           </motion.div>
         ))}
       </div>
 
-      <section className="module-content">
-        <motion.h2 className="module-section-title" {...fadeUp}>Anchor <span style={{ color: '#fdd500' }}>Attractions</span></motion.h2>
-        <div className="module-grid">
-          {attractions.map((a) => (
-            <motion.div key={a.title} className="module-card" {...fadeUp}>
-              <div className="module-card-icon">{a.icon}</div>
-              <div className="module-card-title">{a.title}</div>
-              <div className="module-card-text">{a.text}</div>
+      <div className="module-grid-section attractions-grid">
+        <motion.h2 {...fadeUp} className="section-title">World-Class Entertainment</motion.h2>
+        <div className="attractions-list">
+          {attractions.map((a, i) => (
+            <motion.div 
+              key={a.name}
+              className="attraction-card-v2"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="attraction-logo-wrapper">
+                <img src={a.logo} alt={a.name} className={`attraction-brand-logo ${['flyover america'].includes(a.name.toLowerCase()) ? 'invert-light' : ''}`} />
+              </div>
+              <div className="attraction-info-v2">
+                <h3>{a.name}</h3>
+                <p>{a.text}</p>
+              </div>
             </motion.div>
           ))}
         </div>
-      </section>
+      </div>
 
       <div className="module-cta">
         <motion.h2 className="module-cta-title" {...fadeUp}>Activate <span style={{ color: '#fdd500' }}>Here.</span></motion.h2>

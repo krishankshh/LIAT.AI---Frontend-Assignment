@@ -19,40 +19,40 @@ const RetailModule: React.FC = () => {
   ];
 
   const tenants = [
-    { name: 'Nordstrom', category: 'Anchor' },
-    { name: "Macy's", category: 'Anchor' },
-    { name: 'Nike', category: 'Apparel' },
-    { name: 'Zara', category: 'Apparel' },
-    { name: 'H&M', category: 'Apparel' },
-    { name: 'Uniqlo', category: 'Apparel' },
-    { name: 'Apple', category: 'Tech' },
-    { name: 'Microsoft', category: 'Tech' },
-    { name: 'Lululemon', category: 'Active' },
-    { name: 'American Eagle', category: 'Apparel' },
-    { name: 'Tesla', category: 'Automotive' },
-    { name: 'Peloton', category: 'Fitness' },
+    { name: 'Nordstrom', category: 'Anchor', logo: '/logos/brands/apple.png' }, // Need to use apple for now if nordstrom missing or just path
+    { name: "Macy's", category: 'Anchor', logo: '/logos/brands/macys-com-logo.png' },
+    { name: 'Nike', category: 'Apparel', logo: '/logos/brands/nike.png' },
+    { name: 'Zara', category: 'Apparel', logo: '/logos/brands/zara.png' },
+    { name: 'H&M', category: 'Apparel', logo: '/logos/brands/hm.png' },
+    { name: 'Uniqlo', category: 'Apparel', logo: '/logos/brands/uniqlo-com-logo.png' },
+    { name: 'Apple', category: 'Tech', logo: '/logos/brands/apple.png' },
+    { name: 'Microsoft', category: 'Tech', logo: '/logos/brands/microsoft.png' },
+    { name: 'Lululemon', category: 'Active', logo: '/logos/brands/lululemon.png' },
+    { name: 'American Eagle', category: 'Apparel', logo: '/logos/brands/aeo-inc-com-logo.png' },
+    { name: 'Tesla', category: 'Automotive', logo: '/logos/brands/tesla.png' },
+    { name: 'Peloton', category: 'Fitness', logo: '/logos/brands/onepeloton-com-logo.png' },
   ];
 
   const opportunities = [
     {
       icon: <ShoppingBag size={24} />,
-      title: 'Flagship Stores',
-      text: 'Premium anchor positions with high-visibility entrances and dedicated foot traffic corridors.',
+      title: 'Flagship Spaces',
+      text: 'High-visibility anchor locations and multi-level flagship opportunities in the most-trafficked wings.',
     },
     {
       icon: <TrendingUp size={24} />,
-      title: 'Pop-Up Retail',
-      text: 'Flexible short-term spaces for seasonal launches, brand activations, and direct-to-consumer campaigns.',
+      title: 'In-Line Retail',
+      text: 'Curated retail spaces for lifestyle brands, emerging boutiques, and global specialty stores.',
     },
     {
       icon: <Users size={24} />,
-      title: 'Foot Traffic',
-      text: '40M+ annual visitors create unmatched organic discovery for new and established brands alike.',
+      title: 'Brand Activations',
+      text: 'High-impact pop-ups and immersive brand experiences in our grand central atriums.',
     },
     {
       icon: <MapPin size={24} />,
-      title: 'Strategic Placement',
-      text: 'Data-driven tenant placement optimized for cross-sell potential and category synergy.',
+      title: 'Luxury Collection',
+      text: 'Premier positions within our dedicated luxury wing alongside world-renowned fashion houses.',
     },
   ];
 
@@ -67,6 +67,9 @@ const RetailModule: React.FC = () => {
               'url(/retail_hero.png)',
           }}
         />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/retail_hero.png">
+          <source src="/videos/retail_ambient.mp4" type="video/mp4" />
+        </video>
         <div className="module-hero-overlay" />
         <motion.div className="module-hero-content" {...fadeUp}>
           <span className="module-eyebrow">The Retail Environment</span>
@@ -98,6 +101,30 @@ const RetailModule: React.FC = () => {
         ))}
       </div>
 
+      <div className="module-grid-section">
+        <motion.h2 {...fadeUp} className="section-title">Premier Tenant Mix</motion.h2>
+        <div className="tenants-grid">
+          {tenants.map((t, i) => (
+            <motion.div 
+              key={t.name}
+              className="tenant-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <div className="tenant-logo-wrapper">
+                <img src={t.logo} alt={t.name} className={`tenant-brand-logo ${['apple', 'microsoft', 'tesla', 'nike'].includes(t.name.toLowerCase()) ? 'invert-light' : ''}`} />
+              </div>
+              <div className="tenant-info">
+                <span className="tenant-name">{t.name}</span>
+                <span className="tenant-cat">{t.category}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
       {/* Opportunity Cards */}
       <section className="module-content">
         <motion.h2 className="module-section-title" {...fadeUp}>
@@ -109,21 +136,6 @@ const RetailModule: React.FC = () => {
               <div className="module-card-icon">{o.icon}</div>
               <div className="module-card-title">{o.title}</div>
               <div className="module-card-text">{o.text}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Tenants */}
-      <section className="module-content" style={{ paddingTop: 0 }}>
-        <motion.h2 className="module-section-title" {...fadeUp}>
-          Key <span style={{ color: '#fdd500' }}>Tenants</span>
-        </motion.h2>
-        <div className="module-featured-grid">
-          {tenants.map((t) => (
-            <motion.div key={t.name} className="featured-item" {...fadeUp}>
-              <div className="featured-item-name">{t.name}</div>
-              <div className="featured-item-category">{t.category}</div>
             </motion.div>
           ))}
         </div>

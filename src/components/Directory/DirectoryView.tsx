@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Building2, Utensils, Star, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { moaData } from '../../data';
@@ -13,10 +14,22 @@ const fadeUp = {
 };
 
 const DirectoryView: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearch = searchParams.get('q') || '';
+  
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeLevel, setActiveLevel] = useState(1);
   const [hoveredStore, setHoveredStore] = useState<string | null>(null);
+
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q !== null && q !== searchTerm) {
+      setSearchTerm(q);
+      // If searching, we should probably reset category to 'All' to show all results
+      if (q.length > 0) setActiveCategory('All');
+    }
+  }, [searchParams]);
 
   const filteredStores = useMemo(() => {
     return moaData.directory.filter((store: Store) => {
