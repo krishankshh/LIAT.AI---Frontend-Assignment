@@ -15,6 +15,7 @@ import BusinessHub from './components/Modules/BusinessHub';
 import InquiryPortal from './components/Modules/InquiryPortal';
 import DirectoryView from './components/Directory/DirectoryView';
 import ScrollToTop from './components/Layout/ScrollToTop';
+import SplashScreen from './components/Layout/SplashScreen';
 
 /**
  * Main Application Component
@@ -45,6 +46,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <SplashScreen />
       <div className="app-container">
         <Routes>
           {/* Landing — full-screen immersive, no sidebar */}
