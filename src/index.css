@@ -625,7 +625,19 @@ body {
     height: 64px;
   }
 
-  .nav-search-bar-integrated {
+  .nav-row-inner {
+    justify-content: space-between;
+    position: relative;
+    padding: 1rem 1.5rem; /* Increase vertical size */
+  }
+
+  .navbar-brand-v3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-primary-cta {
     display: none;
   }
 }

@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, ShoppingBag, Star, Utensils, 
   Ticket, Calendar, Building2, Map, Compass,
-  Menu, X, Megaphone, Mic, ArrowLeftRight, Search
+  Menu, X, Megaphone, Mic, ArrowLeftRight, Search, Store
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DiscoveryHub from './DiscoveryHub';
@@ -86,6 +86,10 @@ const Sidebar: React.FC = () => {
         {/* Row 1: Main Navigation */}
         <div className="navbar-row-main">
           <div className="nav-row-inner">
+            <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
             <div className="navbar-brand-v3" onClick={() => navigate('/')}>
               <div className="logo-bg-block">
                 <img src="/moa_logo.png" alt="Mall of America" className="navbar-logo-v3" />
@@ -109,9 +113,6 @@ const Sidebar: React.FC = () => {
               <GlobalSearch className="nav-search-bar-integrated" isBusinessMode={isBusinessMode} />
               <button className="nav-primary-cta" onClick={() => navigate(isBusinessMode ? '/business/inquiry' : '/inquiry')}>
                 {isBusinessMode ? 'Contact Sales' : 'Request a Tour'}
-              </button>
-              <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
@@ -145,10 +146,10 @@ const Sidebar: React.FC = () => {
             />
             <motion.div
               className="mobile-menu"
-              initial={{ x: '100%' }}
+              initial={{ x: -400 }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              exit={{ x: -400 }}
+              transition={{ type: 'tween', duration: 0.3 }}
             >
               <div className="mobile-menu-header">
                 <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" />

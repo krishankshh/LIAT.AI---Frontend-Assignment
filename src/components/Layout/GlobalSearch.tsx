@@ -14,6 +14,7 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   // Close dropdown when clicking outside
@@ -80,11 +81,22 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
     }
   };
 
+  const handleWrapperClick = () => {
+    setIsFocused(true);
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  };
+
   return (
     <div className={`global-search-container ${className}`} ref={containerRef}>
-      <div className={`global-search-input-wrapper ${isFocused ? 'focused' : ''}`}>
+      <div 
+        className={`global-search-input-wrapper ${isFocused ? 'focused' : ''}`}
+        onClick={handleWrapperClick}
+      >
         <Search size={16} className="global-search-icon" />
         <input
+          ref={inputRef}
           type="text"
           placeholder="Search deck, brands..."
           className="global-search-input"
@@ -94,8 +106,19 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
           onKeyDown={handleKeyDown}
         />
         {query && (
-          <button className="global-search-clear" onClick={() => setQuery('')}>
+          <button className="global-search-clear" onClick={(e) => { e.stopPropagation(); setQuery(''); }}>
             <X size={14} />
+          </button>
+        )}
+        {isFocused && (
+          <button 
+            className="global-search-close" 
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsFocused(false);
+            }}
+          >
+            <X size={20} />
           </button>
         )}
       </div>

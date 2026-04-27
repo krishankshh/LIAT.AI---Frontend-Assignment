@@ -5,7 +5,7 @@ import {
   ArrowRight, Volume2, VolumeX, Compass,
   ShoppingBag, Star, Utensils, Ticket, Calendar, Building2,
   Megaphone, MapPin, Users, TrendingUp, Globe, Award,
-  ChevronRight, Menu, X, Search
+  ChevronRight, Menu, X, Search, Store
 } from 'lucide-react';
 import DiscoveryHub from '../Layout/DiscoveryHub';
 import VideoSection from './VideoSection';
@@ -140,6 +140,10 @@ const LandingView: React.FC = () => {
         {/* Row 1: Main Navigation */}
         <div className="navbar-row-main">
           <div className="nav-row-inner">
+            <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
             <div className="navbar-brand-v3" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="logo-bg-block">
                 <motion.img 
@@ -163,9 +167,6 @@ const LandingView: React.FC = () => {
               <button className="nav-primary-cta" onClick={() => navigate('/inquiry')}>
                 Request a Tour
               </button>
-              <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
             </div>
           </div>
         </div>
@@ -188,17 +189,34 @@ const LandingView: React.FC = () => {
       {mobileMenuOpen && (
         <>
           <motion.div className="mobile-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setMobileMenuOpen(false)} />
-          <motion.div className="mobile-menu" initial={{ x: '100%' }} animate={{ x: 0 }} transition={{ type: 'spring', damping: 30, stiffness: 300 }}>
+          <motion.div className="mobile-menu" initial={{ x: -400 }} animate={{ x: 0 }} transition={{ type: 'tween', duration: 0.3 }}>
             <div className="mobile-menu-header">
-              <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" />
+              <div className="logo-bg-block mobile">
+                <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" />
+              </div>
               <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}><X size={24} /></button>
             </div>
             <nav className="mobile-nav">
               <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/overview'); }}>
                 <span className="mobile-link-icon"><ShoppingBag size={16} /></span>Mall Experience
               </button>
-              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/business'); }}>
-                <span className="mobile-link-icon"><Building2 size={16} /></span>Business Portal
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/retail'); }}>
+                <span className="mobile-link-icon"><Store size={16} /></span>Retail
+              </button>
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/luxury'); }}>
+                <span className="mobile-link-icon"><Star size={16} /></span>Luxury
+              </button>
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/dining'); }}>
+                <span className="mobile-link-icon"><Utensils size={16} /></span>Dining
+              </button>
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/attractions'); }}>
+                <span className="mobile-link-icon"><Ticket size={16} /></span>Attractions
+              </button>
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/events'); }}>
+                <span className="mobile-link-icon"><Calendar size={16} /></span>Events
+              </button>
+              <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/business/leasing'); }}>
+                <span className="mobile-link-icon"><Building2 size={16} /></span>Leasing Opportunities
               </button>
               <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/directory'); }}>
                 <span className="mobile-link-icon"><MapPin size={16} /></span>Directory & Map
