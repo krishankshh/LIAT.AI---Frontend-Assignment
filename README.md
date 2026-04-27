@@ -1,8 +1,29 @@
-# Mall of America | Interactive Sales Deck
+# Mall of America | Interactive Sales Tool (Round 2)
 
-A high-fidelity, cinematic, and fully interactive browser-based sales tool for North America's largest retail and entertainment destination. This project replaces traditional static pitch decks with an immersive digital experience designed for prospective tenants, sponsors, and event partners.
+A high-fidelity, cinematic, and non-linear interactive sales tool designed for North America's largest retail and entertainment destination. This version has been significantly overhauled to transition from a "presentation" to a "crafted digital experience."
 
-**Note**: We have used animation instead of video since video seemed too easy and common for the frontend assignment.
+---
+
+## 📬 Round 2: Responding to Feedback
+
+This repository was updated in response to feedback from **LIAT.AI** regarding the initial submission. The following requirements for the "Senior Multidiscplinary Role" were addressed in this overhaul:
+
+> "The work should feel polished, elevated, and commercially compelling... The experience should feel closer to Digideck, and ideally even more interactive... Video-first, AI-rich... Build an emotional arc that pulls the prospect through scale, energy, and opportunity."
+
+### 🎯 Addressing the Challenges:
+1. **Interactive, Not Presentation-Shaped**: Replaced linear navigation with a **Dual-Portal Architecture**. The viewer now drives their own non-linear journey via the "Mall Experience" or the "Business Hub," allowing for a self-directed exploration of the property.
+2. **Video-First & AI-Rich**: Leveraged generative AI (Gemini, Veo, Antigravity) to create immersive, atmospheric imagery and cinematic b-roll video sequences. The "stock filler" was replaced with custom-crafted assets that define the MOA vibe.
+3. **Storytelling Arc**: Created a "Not Just a Mall" emotional arc that transitions the user from the sheer scale of the property into specific high-energy modules (Retail, Luxury, Attractions).
+4. **Mobile UX Overhaul**: Completely redesigned the mobile navigation, featuring a compact "Search Button" that expands into a full-screen interactive overlay and a repositioned "Request a Tour" CTA for higher conversion.
+
+---
+
+## ✨ "I Need to Be Here" Moment
+
+**The Interaction**: The **Seamless Transition from Cinematic Video into the Interactive Portal**.
+**Why it earns that reaction**: For a potential tenant or sponsor, the "moment" happens when the cinematic scale of the video (North America’s #1 Destination) suddenly resolves into a tactile, interactive choice. It moves from passive viewing to active participation. When a tenant clicks "Explore the Mall" and sees the level of detail in the directory—surrounded by global brands like Samsung and Hermès—the scale becomes personal. It shifts the perspective from "That's a big mall" to "I need my brand to be right there."
+
+---
 
 ## 🚀 Live Demo
 **URL**: [https://liat-assignment.netlify.app/](https://liat-assignment.netlify.app/)
@@ -11,31 +32,11 @@ A high-fidelity, cinematic, and fully interactive browser-based sales tool for N
 
 ## ✨ Key Features
 
-- **Cinematic Scrollytelling**: A high-performance landing experience using scroll-linked image sequences and video to convey scale.
+- **Cinematic Scrollytelling**: High-performance landing experience using scroll-linked sequences and video to convey scale.
 - **Interactive Architectural Map**: A custom SVG-based directory with real-time filtering, search, and floor-plan visualizations.
-- **Modular Story Beats**: Dedicated modules for Retail, Luxury, Dining, Attractions, and Events, each optimized for sales conversion.
-- **Non-Linear Navigation**: A luxury-brand inspired sidebar allows prospects to explore the property on their own terms.
-- **Two-Portal Architecture**: Separate consumer-facing "Mall Experience" and corporate-facing "Business Hub" with route-aware navigation.
-- **Partner Inquiry Portal**: Lead capture forms with Google Maps integration, replacing passive mailto links with an actionable pipeline.
-- **Interactive Data Visualizations**: SVG-based charts (donut, bar) for audience demographics and traffic patterns — animated on scroll.
-- **Performance Optimized**: Built for speed with lazy loading, asset optimization, and smooth Framer Motion animations.
-
----
-
-## ⚡ Performance
-
-The application is highly optimized for the best possible user experience, achieving near-perfect scores on Google Lighthouse.
-
-- **Mobile Score**: 99/100
-- **Desktop Score**: 100/100
-
-![Lighthouse Global](./lighthouse_global.png)
-
-### PageSpeed Insights - Mobile
-![PageSpeed Mobile](./pagespeed_mobile.png)
-
-### PageSpeed Insights - Desktop
-![PageSpeed Desktop](./pagespeed_desktop.png)
+- **Non-Linear Navigation**: A luxury-brand inspired sidebar and dual-portal entry allow prospects to explore on their own terms.
+- **AI-Crafted Assets**: High-fidelity imagery and video generated specifically for this project to maintain a cohesive, "crafted" atmosphere.
+- **Mobile-First Search**: A premium mobile search interface with a full-screen overlay and recommendation engine.
 
 ---
 
@@ -47,40 +48,15 @@ The application is highly optimized for the best possible user experience, achie
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
 - **Routing**: React Router 7
-- **Form Handling**: Web3Forms (serverless form submission)
 - **Data Viz**: Custom SVG components (zero external charting libraries)
-
----
-
-## 🎨 Design Rationale
-
-### Two-Portal Architecture
-The most significant architectural decision was splitting the tool into two distinct navigation modes:
-
-- **Mall Experience** (7 nav items): For prospective tenants and partners exploring the property — Retail, Luxury, Dining, Attractions, Events, Directory.
-- **Business Hub** (6 nav items): For corporate decision-makers evaluating sponsorship, leasing, venue rental, and event hosting opportunities.
-
-This solved the "Long Sidebar" problem: a single flat navigation with 12+ items was overwhelming and buried high-conversion CTAs. By introducing explicit intent selection on the landing page ("Enter the Directory" vs "Business Opportunities"), each user journey is curated, shorter, and more effective.
-
-### Visual Language
-The UI is inspired by luxury brands like **Apple**, **Hermès**, and **Tesla**.
-- **Typography**: Clean, sans-serif fonts with generous letter spacing and serif display titles for hierarchy.
-- **Color Palette**: Deep blacks, subtle glassmorphism, and a signature "Mall of America Gold" accent (`#fdd500`) used sparingly for emphasis.
-- **Interactivity**: Micro-animations, hover effects, and cinematic zoom transitions between portals create an experience that feels alive and premium.
-
-### Lead Conversion Strategy
-Every CTA in the deck drives to the **Inquiry Portal** — a multi-field form that captures company name, interest area, timeline, and message. This replaces passive `mailto` links with a structured lead pipeline, moving the tool closer to a real sales instrument.
 
 ---
 
 ## 🤖 AI Tools Usage
 
-This project leverages AI tools as accelerators for asset generation and data research, while all architectural decisions, component design, and interaction patterns were human-driven.
-
-- **Gemini**: Used for generating high-fidelity hero imagery, conceptual architectural renderings, and brand activation mockups across all modules where official photography was unavailable.
-- **Veo**: Leveraged for generating cinematic b-roll video sequences to maintain the "video-first" storytelling requirement established in the brief.
-- **egzip**: Employed for high-performance frame extraction from generated video sequences to power the scrollytelling canvas engine.
-- **Antigravity**: Utilized as a coding assistant for accelerating component scaffolding, complex SVG floor plan coordinate generation, and Mall of America tenant data research.
+- **Gemini**: Generation of high-fidelity hero imagery and conceptual architectural renderings.
+- **Veo**: Creation of cinematic b-roll video sequences for an immersive "video-first" experience.
+- **Antigravity**: Utilized as a pair-programmer for accelerating component development, mobile navigation refinement, and complex SVG coordinate management.
 
 ---
 
@@ -102,11 +78,6 @@ This project leverages AI tools as accelerators for asset generation and data re
    npm run dev
    ```
 
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
-
 ---
 
 ## 📂 Project Structure
@@ -115,44 +86,18 @@ This project leverages AI tools as accelerators for asset generation and data re
 src/
 ├── components/
 │   ├── Directory/              # SVG Map & Search Logic
-│   ├── Landing/                # Scrollytelling, Video Intro, Dual CTAs
-│   ├── Layout/                 # Route-Aware Sidebar & Navigation
-│   ├── Modules/                # Sales Deck Modules
-│   │   ├── OverviewModule      # Property overview
-│   │   ├── RetailModule        # Retail environment
-│   │   ├── LuxuryModule        # Premium positioning
-│   │   ├── DiningModule        # F&B & lifestyle
-│   │   ├── AttractionsModule   # Entertainment
-│   │   ├── EventsModule        # Events & hosting
-│   │   ├── SponsorshipModule   # Partnership tiers + data viz
-│   │   ├── LeasingModule       # Leasing paths & availability
-│   │   ├── VenueModule         # The Rotunda venue spotlight
-│   │   ├── BusinessHub         # Business portal dashboard
-│   │   └── InquiryPortal       # Lead capture form + map
-│   └── MallScrollExperience/   # Canvas-based Scroll Engine
+│   ├── Landing/                # Scrollytelling, Video Hero, Dual CTAs
+│   ├── Layout/                 # Sidebar, GlobalSearch & Mobile Navigation
+│   └── Modules/                # Sales Modules (Retail, Luxury, Business, etc.)
 ├── data/                       # Property & Tenant Data
 └── types/                      # TypeScript Definitions
 ```
 
 ---
 
-## 🎯 Business Objectives
+## 📝 A Personal Note on the Design
 
-Every element of this deck is designed to drive specific actions:
-1. **Leasing**: Showcasing flagship potential, visitor reach, and current availability.
-2. **Sponsorship**: Highlighting global brand platform capabilities with audience intelligence data.
-3. **Events**: Demonstrating venue scale, technical production quality, and booking pathways.
-4. **Lead Capture**: Converting interest into structured inquiries via the Partner Inquiry Portal.
+While I have strived for a visually strong and sophisticated aesthetic, I recognize that design is subjective and may not perfectly align with every expectation of the "standard." However, I hope this submission demonstrates my **strong technical signal** and **versatile skill set**. From building custom scrollytelling engines and complex SVG maps to architecting dual-portal navigation systems and refining mobile UX, I carry the multidisciplinary skills required to build high-stakes, interactive digital tools for a global stage.
 
 ---
-
-## 🔮 What I'd Improve With More Time
-
-- **3D Virtual Tour**: WebGL-based property walkthrough using Three.js for an immersive spatial experience.
-- **Real-Time Availability API**: Live leasing availability pulled from a CRM/property management backend.
-- **Personalized Deck Builder**: Allow sales reps to select specific modules and generate a custom shareable link for each prospect.
-- **Analytics Dashboard**: Track which modules prospects spend the most time on, enabling data-driven follow-up.
-- **Multi-Language Support**: Internationalization for global brand partners (Korean, Japanese, Chinese, Spanish).
-
----
-*Created for the LIAT.AI Frontend Screening Assignment.*
+*Created for the LIAT.AI Frontend Screening Assignment (Round 2 Update).*
