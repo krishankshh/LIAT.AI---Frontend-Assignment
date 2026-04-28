@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { ShoppingBag, TrendingUp, Users, MapPin } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -64,10 +64,10 @@ const RetailModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(/retail_hero.png)',
+              'url(/retail_hero.webp)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/retail_hero.png" preload="none">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/retail_hero.webp" preload="none">
           <source src="/videos/retail_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

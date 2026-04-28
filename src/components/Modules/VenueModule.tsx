@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Music, Presentation, Sparkles, ShoppingBag, ChevronDown, ChevronUp, Monitor, Speaker, Lightbulb, Truck } from 'lucide-react';
 import './ModuleSlide.css';
@@ -94,8 +94,8 @@ const VenueModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(/venue_rotunda_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/venue_rotunda_hero.png" preload="none">
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/venue_rotunda_hero.webp)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/venue_rotunda_hero.webp" preload="none">
           <source src="/videos/venue_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

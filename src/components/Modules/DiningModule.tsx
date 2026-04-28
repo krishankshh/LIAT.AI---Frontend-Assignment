@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { UtensilsCrossed, Wine, Coffee, Salad } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -59,10 +59,10 @@ const DiningModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(/dining_hero.png)',
+              'url(/dining_hero.webp)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/dining_hero.png" preload="none">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/dining_hero.webp" preload="none">
           <source src="/videos/dining_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

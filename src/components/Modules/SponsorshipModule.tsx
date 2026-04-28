@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Megaphone, BarChart3, Zap, Crown, Users, Eye, Share2, TrendingUp } from 'lucide-react';
 import './ModuleSlide.css';
@@ -239,8 +239,8 @@ const SponsorshipModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(/sponsorship_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/sponsorship_hero.png" preload="none">
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/sponsorship_hero.webp)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/sponsorship_hero.webp" preload="none">
           <source src="/videos/sponsorship_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

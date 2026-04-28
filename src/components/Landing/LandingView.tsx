@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
+import { m as motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Volume2, VolumeX, Compass,
@@ -7,11 +7,13 @@ import {
   Megaphone, MapPin, Users, TrendingUp, Globe, Award,
   ChevronRight, Menu, X, Store
 } from 'lucide-react';
-import DiscoveryHub from '../Layout/DiscoveryHub';
 import VideoSection from './VideoSection';
 import '../Layout/Sidebar.css';
 import './LandingView.css';
-import { GlobalSearch } from '../Layout/GlobalSearch';
+
+// Lazy-load overlays to reduce initial bundle evaluation time
+const GlobalSearchLazy = React.lazy(() => import('../Layout/GlobalSearch').then(module => ({ default: module.GlobalSearch })));
+const DiscoveryHub = React.lazy(() => import('../Layout/DiscoveryHub'));
 
 /** Animated counter hook — supports decimals */
 const useCounter = (target: number, duration = 2000, inView = false) => {
@@ -44,6 +46,7 @@ const LandingView: React.FC = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsInView, setStatsInView] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [discoveryOpen, setDiscoveryOpen] = useState(false);
@@ -98,12 +101,12 @@ const LandingView: React.FC = () => {
   };
 
   const moduleCards = [
-    { name: 'Retail', desc: '520+ global brands under one roof', icon: <ShoppingBag size={20} />, path: '/retail', image: '/retail_hero.png' },
-    { name: 'Luxury', desc: 'Where brands become icons', icon: <Star size={20} />, path: '/luxury', image: '/luxury_hero.png' },
-    { name: 'Dining', desc: '60+ culinary destinations', icon: <Utensils size={20} />, path: '/dining', image: '/dining_hero.png' },
-    { name: 'Attractions', desc: '25+ world-class experiences', icon: <Ticket size={20} />, path: '/attractions', image: '/attractions_hero.png' },
-    { name: 'Events', desc: '400+ events per year', icon: <Calendar size={20} />, path: '/events', image: '/events_hero.png' },
-    { name: 'Sponsorship', desc: 'Own the moment', icon: <Megaphone size={20} />, path: '/business/sponsorship', image: '/sponsorship_hero.png' },
+    { name: 'Retail', desc: '520+ global brands under one roof', icon: <ShoppingBag size={20} />, path: '/retail', image: '/retail_hero.webp' },
+    { name: 'Luxury', desc: 'Where brands become icons', icon: <Star size={20} />, path: '/luxury', image: '/luxury_hero.webp' },
+    { name: 'Dining', desc: '60+ culinary destinations', icon: <Utensils size={20} />, path: '/dining', image: '/dining_hero.webp' },
+    { name: 'Attractions', desc: '25+ world-class experiences', icon: <Ticket size={20} />, path: '/attractions', image: '/attractions_hero.webp' },
+    { name: 'Events', desc: '400+ events per year', icon: <Calendar size={20} />, path: '/events', image: '/events_hero.webp' },
+    { name: 'Sponsorship', desc: 'Own the moment', icon: <Megaphone size={20} />, path: '/business/sponsorship', image: '/sponsorship_hero.webp' },
   ];
 
   const differentiators = [
@@ -177,7 +180,9 @@ const LandingView: React.FC = () => {
             </div>
 
             <div className="navbar-actions-v3">
-              <GlobalSearch className="nav-search-bar-integrated" />
+              <Suspense fallback={<div className="nav-search-placeholder" />}>
+                <GlobalSearchLazy className="nav-search-bar-integrated" />
+              </Suspense>
               <button className="nav-primary-cta" onClick={() => navigate('/inquiry')}>
                 Request a Tour
               </button>
@@ -253,8 +258,8 @@ const LandingView: React.FC = () => {
             loop
             playsInline
             className="hero-video"
-            poster="/moa_overview_hero.png"
-            preload="metadata"
+            poster="/moa_overview_hero.webp"
+            preload="auto"
           >
             <source src="/videos/hero_intro.mp4" type="video/mp4" />
           </video>
@@ -467,7 +472,9 @@ const LandingView: React.FC = () => {
       </footer>
 
       {/* Discovery Hub */}
-      <DiscoveryHub isOpen={discoveryOpen} onClose={() => setDiscoveryOpen(false)} />
+      <Suspense fallback={null}>
+        <DiscoveryHub isOpen={discoveryOpen} onClose={() => setDiscoveryOpen(false)} />
+      </Suspense>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { Send, CheckCircle, MapPin, Phone, Clock, Mail } from 'lucide-react';
 import './InquiryPortal.css';

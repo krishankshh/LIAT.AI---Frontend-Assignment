@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Mic2, PartyPopper, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import './ModuleSlide.css';
@@ -81,8 +81,8 @@ const EventsModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(/events_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/events_hero.png" preload="none">
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/events_hero.webp)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/events_hero.webp" preload="none">
           <source src="/videos/events_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

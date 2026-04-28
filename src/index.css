@@ -52,8 +52,8 @@ a:focus:not(:focus-visible) {
   --glass-bg-strong: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-hover: rgba(253, 213, 0, 0.25);
-  --glass-blur: blur(20px);
-  --glass-blur-strong: blur(40px);
+  --glass-blur: blur(12px);
+  --glass-blur-strong: blur(20px);
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -180,6 +180,8 @@ body {
   -webkit-backdrop-filter: blur(20px);
   transition: all 0.4s var(--ease-out-expo);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  will-change: transform;
+  contain: layout style;
 }
 
 /* Global offset for fixed navbar - moved to components to avoid body gap */

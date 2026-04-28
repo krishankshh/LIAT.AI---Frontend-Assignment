@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Users, Building, DollarSign, Plane, Globe, TrendingUp, Award } from 'lucide-react';
 import './ModuleSlide.css';
@@ -37,8 +37,8 @@ const OverviewModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(/moa_overview_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/moa_overview_hero.png" preload="none">
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/moa_overview_hero.webp)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/moa_overview_hero.webp" preload="none">
           <source src="/videos/overview_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

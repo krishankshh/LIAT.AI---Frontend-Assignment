@@ -5,7 +5,7 @@ import {
   Ticket, Calendar, Building2, Map, Compass,
   Menu, X, Megaphone, Mic, ArrowLeftRight, Search, Store
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import DiscoveryHub from './DiscoveryHub';
 import { GlobalSearch } from './GlobalSearch';
 import './Sidebar.css';

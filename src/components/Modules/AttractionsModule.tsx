@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Gamepad2 } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -44,8 +44,8 @@ const AttractionsModule: React.FC = () => {
   return (
     <div className="module-slide">
       <div className="module-hero">
-        <div className="module-hero-bg" style={{ backgroundImage: 'url(/attractions_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/attractions_hero.png" preload="none">
+        <div className="module-hero-bg" style={{ backgroundImage: 'url(/attractions_hero.webp)' }} />
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/attractions_hero.webp" preload="none">
           <source src="/videos/attractions_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

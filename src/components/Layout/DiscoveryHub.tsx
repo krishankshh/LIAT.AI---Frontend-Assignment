@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
   X, LayoutDashboard, ShoppingBag, Star, Utensils, 
@@ -19,7 +19,7 @@ const mallPortals = [
     icon: <LayoutDashboard size={20} />,
     tagline: 'Scale. Reach. Impact.',
     video: '/videos/portal_retail.mp4',
-    fallback: '/moa_overview_hero.png',
+    fallback: '/moa_overview_hero.webp',
   },
   { 
     name: 'Retail', 
@@ -27,7 +27,7 @@ const mallPortals = [
     icon: <ShoppingBag size={20} />,
     tagline: '520+ Global Brands',
     video: '/videos/portal_retail.mp4',
-    fallback: '/retail_hero.png',
+    fallback: '/retail_hero.webp',
   },
   { 
     name: 'Luxury', 
@@ -35,7 +35,7 @@ const mallPortals = [
     icon: <Star size={20} />,
     tagline: 'Where Brands Become Icons',
     video: '/videos/portal_luxury.mp4',
-    fallback: '/luxury_hero.png',
+    fallback: '/luxury_hero.webp',
   },
   { 
     name: 'Dining', 
@@ -43,7 +43,7 @@ const mallPortals = [
     icon: <Utensils size={20} />,
     tagline: 'A Culinary Destination',
     video: '/videos/portal_dining.mp4',
-    fallback: '/dining_hero.png',
+    fallback: '/dining_hero.webp',
   },
   { 
     name: 'Attractions', 
@@ -51,7 +51,7 @@ const mallPortals = [
     icon: <Ticket size={20} />,
     tagline: 'A World of Experiences',
     video: '/videos/portal_attractions.mp4',
-    fallback: '/attractions_hero.png',
+    fallback: '/attractions_hero.webp',
   },
   { 
     name: 'Events', 
@@ -59,7 +59,7 @@ const mallPortals = [
     icon: <Calendar size={20} />,
     tagline: '400+ Events Per Year',
     video: '/videos/portal_events.mp4',
-    fallback: '/events_hero.png',
+    fallback: '/events_hero.webp',
   },
 ];
 
@@ -70,7 +70,7 @@ const businessPortals = [
     icon: <Megaphone size={20} />,
     tagline: 'Own The Moment',
     video: '/videos/portal_sponsorship.mp4',
-    fallback: '/sponsorship_hero.png',
+    fallback: '/sponsorship_hero.webp',
   },
   { 
     name: 'The Rotunda', 
@@ -78,7 +78,7 @@ const businessPortals = [
     icon: <Mic size={20} />,
     tagline: '5,000-Capacity Venue',
     video: '/videos/portal_venue.mp4',
-    fallback: '/venue_rotunda_hero.png',
+    fallback: '/venue_rotunda_hero.webp',
   },
   { 
     name: 'Leasing', 
@@ -86,7 +86,7 @@ const businessPortals = [
     icon: <Building2 size={20} />,
     tagline: 'Your Space Awaits',
     video: '/videos/portal_leasing.mp4',
-    fallback: '/leasing_hero.png',
+    fallback: '/leasing_hero.webp',
   },
   { 
     name: 'Directory + Map', 

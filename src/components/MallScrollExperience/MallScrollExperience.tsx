@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useTransform, MotionValue } from 'framer-motion';
+import { m as motion, useTransform, MotionValue } from 'framer-motion';
 import './MallScrollExperience.css';
 
 const TOTAL_FRAMES = 120;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useTransform, MotionValue } from 'framer-motion';
+import { m as motion, useTransform, MotionValue } from 'framer-motion';
 import './NarrativeSlide.css';
 
 interface NarrativeSlideProps {

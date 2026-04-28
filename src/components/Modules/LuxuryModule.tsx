@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Gem, Award, Crown, Sparkles } from 'lucide-react';
 import './ModuleSlide.css';
 
@@ -59,10 +59,10 @@ const LuxuryModule: React.FC = () => {
           className="module-hero-bg"
           style={{
             backgroundImage:
-              'url(/luxury_hero.png)',
+              'url(/luxury_hero.webp)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/luxury_hero.png" preload="none">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/luxury_hero.webp" preload="none">
           <source src="/videos/luxury_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />
