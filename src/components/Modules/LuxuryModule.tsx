@@ -62,7 +62,7 @@ const LuxuryModule: React.FC = () => {
               'url(/luxury_hero.png)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/luxury_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/luxury_hero.png" preload="none">
           <source src="/videos/luxury_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

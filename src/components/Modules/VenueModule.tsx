@@ -95,7 +95,7 @@ const VenueModule: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/venue_rotunda_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/venue_rotunda_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/venue_rotunda_hero.png" preload="none">
           <source src="/videos/venue_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

@@ -5,6 +5,17 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Preconnect for Google Fonts (eliminates DNS+TLS round trips) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Non-render-blocking font loading via <link> instead of CSS @import -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" />
+    </noscript>
+
     <!-- Primary Meta Tags -->
     <title>Mall of America | The Ultimate Retail & Entertainment Platform</title>
     <meta name="title" content="Mall of America | The Ultimate Retail & Entertainment Platform" />
@@ -12,6 +23,8 @@
     <meta name="keywords" content="Mall of America, MOA, Retail, Luxury, Dining, Attractions, Sales Deck, Interactive Experience" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="canonical" href="https://liat-assignment.netlify.app/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -26,6 +39,36 @@
     <meta property="twitter:title" content="Mall of America | The Ultimate Retail & Entertainment Platform" />
     <meta property="twitter:description" content="Experience the grand scale of North America's most iconic destination. A world-class showcase of luxury, dining, and global attractions." />
     <meta property="twitter:image" content="/moa_logo.png" />
+
+    <!-- Structured Data (JSON-LD) for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ShoppingCenter",
+      "name": "Mall of America",
+      "description": "The largest shopping and entertainment complex in North America. 520+ stores, 60+ dining options, and 25+ attractions.",
+      "url": "https://liat-assignment.netlify.app/",
+      "logo": "https://liat-assignment.netlify.app/moa_logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "60 E Broadway",
+        "addressLocality": "Bloomington",
+        "addressRegion": "MN",
+        "postalCode": "55425",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.8549,
+        "longitude": -93.2422
+      },
+      "openingHours": "Mo-Sa 10:00-21:00, Su 11:00-19:00",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": 14000
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

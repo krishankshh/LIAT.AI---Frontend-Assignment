@@ -45,7 +45,7 @@ const AttractionsModule: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/attractions_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/attractions_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/attractions_hero.png" preload="none">
           <source src="/videos/attractions_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

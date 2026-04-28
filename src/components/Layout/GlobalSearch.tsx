@@ -15,6 +15,7 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
   const [isFocused, setIsFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownId = 'global-search-dropdown';
   const navigate = useNavigate();
 
   // Close dropdown when clicking outside
@@ -79,6 +80,9 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
         handleDirectorySearch();
       }
     }
+    if (e.key === 'Escape') {
+      setIsFocused(false);
+    }
   };
 
   const handleWrapperClick = () => {
@@ -89,12 +93,12 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
   };
 
   return (
-    <div className={`global-search-container ${className}`} ref={containerRef}>
+    <div className={`global-search-container ${className}`} ref={containerRef} role="search" aria-label="Site search">
       <div 
         className={`global-search-input-wrapper ${isFocused ? 'focused' : ''}`}
         onClick={handleWrapperClick}
       >
-        <Search size={16} className="global-search-icon" />
+        <Search size={16} className="global-search-icon" aria-hidden="true" />
         <input
           ref={inputRef}
           type="text"
@@ -104,9 +108,14 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onKeyDown={handleKeyDown}
+          aria-label="Search deck pages and brands"
+          aria-expanded={isFocused}
+          aria-controls={dropdownId}
+          aria-autocomplete="list"
+          role="combobox"
         />
         {query && (
-          <button className="global-search-clear" onClick={(e) => { e.stopPropagation(); setQuery(''); }}>
+          <button className="global-search-clear" onClick={(e) => { e.stopPropagation(); setQuery(''); }} aria-label="Clear search">
             <X size={14} />
           </button>
         )}
@@ -117,6 +126,7 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
               e.stopPropagation();
               setIsFocused(false);
             }}
+            aria-label="Close search dropdown"
           >
             <X size={20} />
           </button>
@@ -126,18 +136,21 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
       <AnimatePresence>
         {isFocused && (
           <motion.div
+            id={dropdownId}
             className="global-search-dropdown"
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
+            role="listbox"
+            aria-label="Search results"
           >
             {query.length === 0 ? (
               <div className="search-section">
-                <div className="search-section-title">Quick Navigation</div>
+                <div className="search-section-title" id="quick-nav-label">Quick Navigation</div>
                 {quickOptions.map(option => (
-                  <button key={option.path} className="search-result-item" onClick={() => handleSelect(option.path)}>
-                    <span className="result-icon">{option.icon}</span>
+                  <button key={option.path} className="search-result-item" onClick={() => handleSelect(option.path)} role="option">
+                    <span className="result-icon" aria-hidden="true">{option.icon}</span>
                     <span className="result-name">{option.name}</span>
                   </button>
                 ))}
@@ -150,8 +163,8 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
                       <div className="search-section">
                         <div className="search-section-title">Deck Pages</div>
                         {filteredPages.map(page => (
-                          <button key={page.path} className="search-result-item" onClick={() => handleSelect(page.path)}>
-                            <span className="result-icon">{page.icon}</span>
+                          <button key={page.path} className="search-result-item" onClick={() => handleSelect(page.path)} role="option">
+                            <span className="result-icon" aria-hidden="true">{page.icon}</span>
                             <span className="result-name">{page.name}</span>
                           </button>
                         ))}
@@ -162,11 +175,11 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
                       <div className="search-section">
                         <div className="search-section-title">Directory Matches</div>
                         {filteredDirectory.map(store => (
-                          <button key={store.id} className="search-result-item directory-result" onClick={() => handleSelect(`/directory?q=${encodeURIComponent(store.name)}`)}>
-                            <div className="result-icon directory"><MapPin size={14} /></div>
+                          <button key={store.id} className="search-result-item directory-result" onClick={() => handleSelect(`/directory?q=${encodeURIComponent(store.name)}`)} role="option">
+                            <div className="result-icon directory" aria-hidden="true"><MapPin size={14} /></div>
                             <div className="result-details">
                               <span className="result-name">{store.name}</span>
-                              <span className="result-cat">{store.category} &middot; Level {store.level}</span>
+                              <span className="result-cat">{store.category} · Level {store.level}</span>
                             </div>
                           </button>
                         ))}
@@ -175,7 +188,7 @@ export const GlobalSearch: React.FC<GlobalSearchProps> = ({ className = '', isBu
                   </>
                 ) : (
                   <div className="search-no-results">
-                    <Search size={24} className="no-results-icon" />
+                    <Search size={24} className="no-results-icon" aria-hidden="true" />
                     <p>No matches for "{query}"</p>
                     <button className="search-fallback-btn" onClick={handleDirectorySearch}>
                       Search full directory

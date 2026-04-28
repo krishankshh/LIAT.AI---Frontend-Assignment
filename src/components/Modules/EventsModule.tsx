@@ -82,7 +82,7 @@ const EventsModule: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/events_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/events_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/events_hero.png" preload="none">
           <source src="/videos/events_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

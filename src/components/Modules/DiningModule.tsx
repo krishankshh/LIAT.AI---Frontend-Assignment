@@ -62,7 +62,7 @@ const DiningModule: React.FC = () => {
               'url(/dining_hero.png)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/dining_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/dining_hero.png" preload="none">
           <source src="/videos/dining_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

@@ -5,7 +5,7 @@ import {
   ArrowRight, Volume2, VolumeX, Compass,
   ShoppingBag, Star, Utensils, Ticket, Calendar, Building2,
   Megaphone, MapPin, Users, TrendingUp, Globe, Award,
-  ChevronRight, Menu, X, Search, Store
+  ChevronRight, Menu, X, Store
 } from 'lucide-react';
 import DiscoveryHub from '../Layout/DiscoveryHub';
 import VideoSection from './VideoSection';
@@ -120,12 +120,11 @@ const LandingView: React.FC = () => {
     { name: 'Lululemon', logo: '/logos/brands/lululemon.png' },
     { name: 'Sephora', logo: '/logos/brands/sephora.png' },
     { name: 'LEGO', logo: '/logos/brands/lego.png' },
-    { name: 'HM', logo: '/logos/brands/hm.png' },
+    { name: 'H&M', logo: '/logos/brands/hm.png' },
     { name: 'Tesla', logo: '/logos/brands/tesla.png' },
     { name: 'Microsoft', logo: '/logos/brands/microsoft.png' },
     { name: 'Samsung', logo: '/logos/brands/samsung.png' },
-    { name: 'Amazon', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
-    { name: 'Starbucks', logo: '/logos/brands/starbucks.svg' }
+    { name: 'Starbucks', logo: '/logos/brands/starbucks.svg' },
   ];
 
   return (
@@ -134,23 +133,38 @@ const LandingView: React.FC = () => {
       <motion.nav
         className={`glass-navbar-v3 ${navScrolled ? 'scrolled' : ''}`}
         initial={{ y: -100 }}
-        animate={{ y: navVisible ? 0 : -140 }} /* Hide entirely based on v3 height */
+        animate={{ y: navVisible ? 0 : -140 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        aria-label="Main navigation"
       >
         {/* Row 1: Main Navigation */}
         <div className="navbar-row-main">
           <div className="nav-row-inner">
-            <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button
+              className="mobile-toggle-v3"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+            >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            <div className="navbar-brand-v3" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div
+              className="navbar-brand-v3"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              role="button"
+              tabIndex={0}
+              aria-label="Scroll to top"
+              onKeyDown={(e) => { if (e.key === 'Enter') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            >
               <div className="logo-bg-block">
                 <motion.img 
                   src="/moa_logo.png" 
                   alt="Mall of America" 
                   className="navbar-logo-v3" 
                   style={{ height: logoHeight }}
+                  width="160"
+                  height="64"
                 />
               </div>
             </div>
@@ -189,14 +203,14 @@ const LandingView: React.FC = () => {
       {mobileMenuOpen && (
         <>
           <motion.div className="mobile-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setMobileMenuOpen(false)} />
-          <motion.div className="mobile-menu" initial={{ x: -400 }} animate={{ x: 0 }} transition={{ type: 'tween', duration: 0.3 }}>
+          <motion.div className="mobile-menu" initial={{ x: -400 }} animate={{ x: 0 }} transition={{ type: 'tween', duration: 0.3 }} role="dialog" aria-label="Mobile navigation menu">
             <div className="mobile-menu-header">
               <div className="logo-bg-block mobile">
-                <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" />
+                <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" width="120" height="48" />
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}><X size={24} /></button>
+              <button onClick={() => setMobileMenuOpen(false)} aria-label="Close menu" style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}><X size={24} /></button>
             </div>
-            <nav className="mobile-nav">
+            <nav className="mobile-nav" aria-label="Mobile navigation">
               <button className="mobile-link" onClick={() => { setMobileMenuOpen(false); navigate('/overview'); }}>
                 <span className="mobile-link-icon"><ShoppingBag size={16} /></span>Mall Experience
               </button>
@@ -230,7 +244,7 @@ const LandingView: React.FC = () => {
       )}
 
       {/* ======== VIDEO HERO ======== */}
-      <div ref={heroRef} className="hero-section">
+      <div ref={heroRef} className="hero-section" id="main-content">
         <motion.div className="hero-video-container" style={{ scale: heroScale }}>
           <video
             ref={videoRef}
@@ -240,6 +254,7 @@ const LandingView: React.FC = () => {
             playsInline
             className="hero-video"
             poster="/moa_overview_hero.png"
+            preload="metadata"
           >
             <source src="/videos/hero_intro.mp4" type="video/mp4" />
           </video>
@@ -289,7 +304,7 @@ const LandingView: React.FC = () => {
         </motion.div>
 
         {/* Sound Toggle */}
-        <button className="sound-toggle" onClick={toggleMute}>
+        <button className="sound-toggle" onClick={toggleMute} aria-label={isMuted ? 'Unmute video' : 'Mute video'}>
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
       </div>
@@ -332,9 +347,11 @@ const LandingView: React.FC = () => {
               onClick={() => navigate(card.path)}
               role="button"
               tabIndex={0}
+              aria-label={`Explore ${card.name}: ${card.desc}`}
+              onKeyDown={(e) => { if (e.key === 'Enter') navigate(card.path); }}
             >
               <div className="preview-card-image">
-                <img src={card.image} alt={card.name} loading="lazy" />
+                <img src={card.image} alt={`${card.name} section`} loading="lazy" width="400" height="180" />
                 <div className="preview-card-overlay" />
               </div>
               <div className="preview-card-content">
@@ -350,7 +367,7 @@ const LandingView: React.FC = () => {
         </div>
 
         <motion.div className="section-action" {...fadeUp}>
-          <button className="explore-all-btn" onClick={() => setDiscoveryOpen(true)}>
+          <button className="explore-all-btn" onClick={() => setDiscoveryOpen(true)} aria-label="Open full deck navigation">
             <Compass size={16} />
             Open Full Deck
             <ArrowRight size={14} />
@@ -394,14 +411,14 @@ const LandingView: React.FC = () => {
       </section>
 
       {/* ======== PARTNER LOGOS ======== */}
-      <section id="partners" className="partners-section">
+      <section id="partners" className="partners-section" aria-label="Partner brands">
         <motion.div {...fadeUp} className="partners-label">Trusted by the world's premier brands</motion.div>
         <motion.div {...fadeUp} className="partners-static-grid">
-          {partners.slice(0, 12).map((p, i) => {
-            const needsInvert = ['apple', 'samsung', 'starbucks', 'amazon', 'microsoft'].includes(p.name.toLowerCase());
+          {partners.map((p) => {
+            const needsInvert = ['apple', 'samsung', 'starbucks', 'microsoft'].includes(p.name.toLowerCase());
             return (
               <div key={p.name} className={`partner-logo-box ${needsInvert ? 'logo-invert' : ''}`}>
-                <img src={p.logo} alt={p.name} className="partner-logo-img" />
+                <img src={p.logo} alt={`${p.name} logo`} className="partner-logo-img" loading="lazy" width="160" height="55" />
               </div>
             );
           })}
@@ -436,15 +453,15 @@ const LandingView: React.FC = () => {
       <footer className="landing-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <img src="/moa_logo.png" alt="Mall of America" className="footer-logo" />
+            <img src="/moa_logo.png" alt="Mall of America" className="footer-logo" width="120" height="64" />
             <p className="footer-address">60 E Broadway, Bloomington, MN 55425</p>
           </div>
-          <div className="footer-links">
+          <nav className="footer-links" aria-label="Footer navigation">
             <button onClick={() => navigate('/overview')}>Mall Experience</button>
             <button onClick={() => navigate('/business')}>Business Portal</button>
             <button onClick={() => navigate('/directory')}>Directory & Map</button>
             <button onClick={() => navigate('/inquiry')}>Contact</button>
-          </div>
+          </nav>
           <div className="footer-copy">© 2026 Mall of America. Interactive Sales Deck.</div>
         </div>
       </footer>

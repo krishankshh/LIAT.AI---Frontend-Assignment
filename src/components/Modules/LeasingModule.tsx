@@ -113,7 +113,7 @@ const LeasingModule: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/leasing_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/leasing_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/leasing_hero.png" preload="none">
           <source src="/videos/leasing_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

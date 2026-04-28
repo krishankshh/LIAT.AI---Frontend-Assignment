@@ -11,7 +11,7 @@ const DeckLayout: React.FC = () => {
   return (
     <div className="deck-layout">
       <Sidebar />
-      <main className="deck-content">
+      <main className="deck-content" id="main-content">
         <Outlet />
       </main>
     </div>

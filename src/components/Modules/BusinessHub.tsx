@@ -91,7 +91,7 @@ const BusinessHub: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/sponsorship_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/sponsorship_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/sponsorship_hero.png" preload="none">
           <source src="/videos/business_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

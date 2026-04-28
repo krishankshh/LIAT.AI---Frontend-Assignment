@@ -1,7 +1,7 @@
 /* ================================================
    LANDING PAGE V2 — Full Cinematic Experience
    ================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;800&display=swap');
+/* Fonts loaded via <link> in index.html for non-render-blocking loading */
 
 .landing-page-v2 {
   background: var(--moa-bg, #050505);

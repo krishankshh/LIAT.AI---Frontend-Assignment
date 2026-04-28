@@ -38,7 +38,7 @@ const OverviewModule: React.FC = () => {
     <div className="module-slide">
       <div className="module-hero">
         <div className="module-hero-bg" style={{ backgroundImage: 'url(/moa_overview_hero.png)' }} />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/moa_overview_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/moa_overview_hero.png" preload="none">
           <source src="/videos/overview_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />

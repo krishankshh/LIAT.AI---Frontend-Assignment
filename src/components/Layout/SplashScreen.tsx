@@ -6,10 +6,10 @@ const SplashScreen: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Hide splash screen after 3.5 seconds to allow for the reveal animation
+    // Reduced from 3500ms to 1800ms — still cinematic but saves ~1.7s on TTI/LCP
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 3500);
+    }, 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,7 +20,9 @@ const SplashScreen: React.FC = () => {
           className="splash-container"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          role="presentation"
+          aria-hidden="true"
         >
           {/* Atmospheric Glow */}
           <div className="splash-bg-glow" />
@@ -28,18 +30,20 @@ const SplashScreen: React.FC = () => {
           {/* Logo with Cinematic Reveal */}
           <motion.div
             className="splash-logo-wrapper"
-            initial={{ opacity: 0, scale: 1.2, filter: 'blur(10px)' }}
+            initial={{ opacity: 0, scale: 1.1, filter: 'blur(8px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ 
-              duration: 1.5, 
-              ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for premium feel
-              delay: 0.2
+              duration: 1, 
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.1
             }}
           >
             <img 
               src="/moa_logo.png" 
-              alt="Mall of America" 
+              alt="" 
               className="splash-logo"
+              width="200"
+              height="80"
             />
           </motion.div>
 
@@ -48,7 +52,7 @@ const SplashScreen: React.FC = () => {
             className="splash-loader-container"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
           >
             <div className="splash-loader-bar" />
           </motion.div>
@@ -58,7 +62,7 @@ const SplashScreen: React.FC = () => {
             className="splash-status"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
           >
             Initializing Experience
           </motion.div>

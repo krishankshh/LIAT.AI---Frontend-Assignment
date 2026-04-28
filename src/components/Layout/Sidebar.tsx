@@ -82,17 +82,23 @@ const Sidebar: React.FC = () => {
         initial={{ y: -100 }}
         animate={{ y: navVisible ? 0 : -140 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        aria-label="Main navigation"
       >
         {/* Row 1: Main Navigation */}
         <div className="navbar-row-main">
           <div className="nav-row-inner">
-            <button className="mobile-toggle-v3" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button
+              className="mobile-toggle-v3"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+            >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
             <div className="navbar-brand-v3" onClick={() => navigate('/')}>
               <div className="logo-bg-block">
-                <img src="/moa_logo.png" alt="Mall of America" className="navbar-logo-v3" />
+                <img src="/moa_logo.png" alt="Mall of America" className="navbar-logo-v3" width="160" height="64" />
               </div>
             </div>
 
@@ -150,10 +156,12 @@ const Sidebar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: -400 }}
               transition={{ type: 'tween', duration: 0.3 }}
+              role="dialog"
+              aria-label="Mobile navigation menu"
             >
               <div className="mobile-menu-header">
-                <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" />
-                <button onClick={() => setMobileMenuOpen(false)}>
+                <img src="/moa_logo.png" alt="Mall of America" className="mobile-logo" width="120" height="48" />
+                <button onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
                   <X size={24} />
                 </button>
               </div>
@@ -162,7 +170,7 @@ const Sidebar: React.FC = () => {
                 {isBusinessMode ? 'Business Portal' : 'Mall Experience'}
               </div>
 
-              <nav className="mobile-nav">
+              <nav className="mobile-nav" aria-label="Mobile navigation">
                 {navItems.map((item) => (
                   <NavLink
                     key={item.name}
@@ -181,7 +189,7 @@ const Sidebar: React.FC = () => {
               </nav>
 
               <div className="mobile-footer">
-                <button className="mobile-mode-switch" onClick={handleModeSwitch}>
+                <button className="mobile-mode-switch" onClick={handleModeSwitch} aria-label={`Switch to ${isBusinessMode ? 'Mall Experience' : 'Business Portal'}`}>
                   <ArrowLeftRight size={14} />
                   Switch to {isBusinessMode ? 'Mall Experience' : 'Business Portal'}
                 </button>

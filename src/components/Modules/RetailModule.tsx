@@ -67,7 +67,7 @@ const RetailModule: React.FC = () => {
               'url(/retail_hero.png)',
           }}
         />
-        <video autoPlay muted loop playsInline className="module-hero-video" poster="/retail_hero.png">
+        <video autoPlay muted loop playsInline className="module-hero-video" poster="/retail_hero.png" preload="none">
           <source src="/videos/retail_ambient.mp4" type="video/mp4" />
         </video>
         <div className="module-hero-overlay" />
@@ -114,7 +114,7 @@ const RetailModule: React.FC = () => {
               transition={{ delay: i * 0.05 }}
             >
               <div className="tenant-logo-wrapper">
-                <img src={t.logo} alt={t.name} className={`tenant-brand-logo ${['apple', 'microsoft', 'tesla', 'nike'].includes(t.name.toLowerCase()) ? 'invert-light' : ''}`} />
+                <img src={t.logo} alt={`${t.name} logo`} loading="lazy" className={`tenant-brand-logo ${['apple', 'microsoft', 'tesla', 'nike'].includes(t.name.toLowerCase()) ? 'invert-light' : ''}`} width="120" height="40" />
               </div>
               <div className="tenant-info">
                 <span className="tenant-name">{t.name}</span>
