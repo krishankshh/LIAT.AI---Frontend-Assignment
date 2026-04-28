@@ -65,7 +65,7 @@ This repository was updated in response to feedback from **LIAT.AI** regarding t
 1. **Clone the repository**:
    ```bash
    git clone [repository-url]
-   cd mall-of-america-assignment
+   cd LIAT.AI---Frontend-Assignment
    ```
 
 2. **Install dependencies**:
